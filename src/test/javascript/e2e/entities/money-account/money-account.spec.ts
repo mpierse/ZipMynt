@@ -40,9 +40,13 @@ describe('MoneyAccount e2e test', () => {
         await moneyAccountComponentsPage.clickOnCreateButton();
         await promise.all([
             moneyAccountUpdatePage.typeSelectLastOption(),
+            moneyAccountUpdatePage.setAccountIdInput('accountId'),
+            moneyAccountUpdatePage.setDescriptionInput('description'),
             moneyAccountUpdatePage.setAccountTotalInput('5'),
             moneyAccountUpdatePage.userDetailsSelectLastOption()
         ]);
+        expect(await moneyAccountUpdatePage.getAccountIdInput()).to.eq('accountId');
+        expect(await moneyAccountUpdatePage.getDescriptionInput()).to.eq('description');
         expect(await moneyAccountUpdatePage.getAccountTotalInput()).to.eq('5');
         await moneyAccountUpdatePage.save();
         expect(await moneyAccountUpdatePage.getSaveButton().isPresent()).to.be.false;

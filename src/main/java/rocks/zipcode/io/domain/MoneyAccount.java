@@ -36,6 +36,14 @@ public class MoneyAccount implements Serializable {
     private AccountType type;
 
     @NotNull
+    @Column(name = "account_id", nullable = false)
+    private String accountId;
+
+    @NotNull
+    @Column(name = "description", nullable = false)
+    private String description;
+
+    @NotNull
     @Column(name = "account_total", nullable = false)
     private Long accountTotal;
 
@@ -66,6 +74,32 @@ public class MoneyAccount implements Serializable {
 
     public void setType(AccountType type) {
         this.type = type;
+    }
+
+    public String getAccountId() {
+        return accountId;
+    }
+
+    public MoneyAccount accountId(String accountId) {
+        this.accountId = accountId;
+        return this;
+    }
+
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public MoneyAccount description(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Long getAccountTotal() {
@@ -145,6 +179,8 @@ public class MoneyAccount implements Serializable {
         return "MoneyAccount{" +
             "id=" + getId() +
             ", type='" + getType() + "'" +
+            ", accountId='" + getAccountId() + "'" +
+            ", description='" + getDescription() + "'" +
             ", accountTotal=" + getAccountTotal() +
             "}";
     }

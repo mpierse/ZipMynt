@@ -16,6 +16,8 @@
             <tr>
             <th><span>ID</span></th>
             <th><span>Type</span></th>
+            <th><span>Account Id</span></th>
+            <th><span>Description</span></th>
             <th><span>Account Total</span></th>
             <th><span>User Details</span></th>
             <th></th>
@@ -25,6 +27,8 @@
             <tr *ngFor="let moneyAccount of moneyAccounts ;trackBy: trackId">
                 <td><a [routerLink]="['/money-account', moneyAccount.id, 'view' ]">{{moneyAccount.id}}</a></td>
                 <td>{{moneyAccount.type}}</td>
+                <td>{{moneyAccount.accountId}}</td>
+                <td>{{moneyAccount.description}}</td>
                 <td>{{moneyAccount.accountTotal}}</td>
                 <td>
                     <div *ngIf="moneyAccount.userDetails">

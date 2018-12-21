@@ -17,6 +17,7 @@
             <th><span>ID</span></th>
             <th><span>Expected Spending</span></th>
             <th><span>Actual Spending</span></th>
+            <th><span>Description</span></th>
             <th><span>Category</span></th>
             <th><span>Budget</span></th>
             <th></th>
@@ -27,6 +28,7 @@
                 <td><a [routerLink]="['/budget-item', budgetItem.id, 'view' ]">{{budgetItem.id}}</a></td>
                 <td>{{budgetItem.expectedSpending}}</td>
                 <td>{{budgetItem.actualSpending}}</td>
+                <td>{{budgetItem.description}}</td>
                 <td>{{budgetItem.category}}</td>
                 <td>
                     <div *ngIf="budgetItem.budget">

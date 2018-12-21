@@ -34,6 +34,9 @@ public class BudgetItem implements Serializable {
     @Column(name = "actual_spending")
     private Long actualSpending;
 
+    @Column(name = "description")
+    private String description;
+
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "category", nullable = false)
@@ -76,6 +79,19 @@ public class BudgetItem implements Serializable {
 
     public void setActualSpending(Long actualSpending) {
         this.actualSpending = actualSpending;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public BudgetItem description(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Category getCategory() {
@@ -131,6 +147,7 @@ public class BudgetItem implements Serializable {
             "id=" + getId() +
             ", expectedSpending=" + getExpectedSpending() +
             ", actualSpending=" + getActualSpending() +
+            ", description='" + getDescription() + "'" +
             ", category='" + getCategory() + "'" +
             "}";
     }

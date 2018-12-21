@@ -10,6 +10,20 @@
             ]
         },
         {
+            "fieldName": "accountId",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
             "fieldName": "accountTotal",
             "fieldType": "Long",
             "fieldValidateRules": [

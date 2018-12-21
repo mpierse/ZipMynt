@@ -21,8 +21,9 @@ export interface ITransaction {
     id?: number;
     amount?: number;
     transactionType?: TransactionType;
+    accountId?: string;
     dateTime?: Moment;
-    description?: string;
+    descriptionID?: string;
     memo?: string;
     category?: Category;
     moneyAccount?: IMoneyAccount;
@@ -33,8 +34,9 @@ export class Transaction implements ITransaction {
         public id?: number,
         public amount?: number,
         public transactionType?: TransactionType,
+        public accountId?: string,
         public dateTime?: Moment,
-        public description?: string,
+        public descriptionID?: string,
         public memo?: string,
         public category?: Category,
         public moneyAccount?: IMoneyAccount

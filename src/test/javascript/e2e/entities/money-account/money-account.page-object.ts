@@ -27,6 +27,8 @@ export class MoneyAccountUpdatePage {
     saveButton = element(by.id('save-entity'));
     cancelButton = element(by.id('cancel-save'));
     typeSelect = element(by.id('field_type'));
+    accountIdInput = element(by.id('field_accountId'));
+    descriptionInput = element(by.id('field_description'));
     accountTotalInput = element(by.id('field_accountTotal'));
     userDetailsSelect = element(by.id('field_userDetails'));
 
@@ -47,6 +49,22 @@ export class MoneyAccountUpdatePage {
             .all(by.tagName('option'))
             .last()
             .click();
+    }
+
+    async setAccountIdInput(accountId) {
+        await this.accountIdInput.sendKeys(accountId);
+    }
+
+    async getAccountIdInput() {
+        return this.accountIdInput.getAttribute('value');
+    }
+
+    async setDescriptionInput(description) {
+        await this.descriptionInput.sendKeys(description);
+    }
+
+    async getDescriptionInput() {
+        return this.descriptionInput.getAttribute('value');
     }
 
     async setAccountTotalInput(accountTotal) {

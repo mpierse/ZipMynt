@@ -41,11 +41,13 @@ describe('BudgetItem e2e test', () => {
         await promise.all([
             budgetItemUpdatePage.setExpectedSpendingInput('5'),
             budgetItemUpdatePage.setActualSpendingInput('5'),
+            budgetItemUpdatePage.setDescriptionInput('description'),
             budgetItemUpdatePage.categorySelectLastOption(),
             budgetItemUpdatePage.budgetSelectLastOption()
         ]);
         expect(await budgetItemUpdatePage.getExpectedSpendingInput()).to.eq('5');
         expect(await budgetItemUpdatePage.getActualSpendingInput()).to.eq('5');
+        expect(await budgetItemUpdatePage.getDescriptionInput()).to.eq('description');
         await budgetItemUpdatePage.save();
         expect(await budgetItemUpdatePage.getSaveButton().isPresent()).to.be.false;
 

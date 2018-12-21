@@ -25,6 +25,14 @@
                 <constraints nullable="false" />
             </column>
 
+            <column name="account_id" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="description" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
             <column name="account_total" type="bigint">
                 <constraints nullable="false" />
             </column>

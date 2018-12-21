@@ -17,8 +17,9 @@
             <th><span>ID</span></th>
             <th><span>Amount</span></th>
             <th><span>Transaction Type</span></th>
+            <th><span>Account Id</span></th>
             <th><span>Date Time</span></th>
-            <th><span>Description</span></th>
+            <th><span>Description ID</span></th>
             <th><span>Memo</span></th>
             <th><span>Category</span></th>
             <th><span>Money Account</span></th>
@@ -30,8 +31,9 @@
                 <td><a [routerLink]="['/transaction', transaction.id, 'view' ]">{{transaction.id}}</a></td>
                 <td>{{transaction.amount}}</td>
                 <td>{{transaction.transactionType}}</td>
+                <td>{{transaction.accountId}}</td>
                 <td>{{transaction.dateTime | date:'mediumDate'}}</td>
-                <td>{{transaction.description}}</td>
+                <td>{{transaction.descriptionID}}</td>
                 <td>{{transaction.memo}}</td>
                 <td>{{transaction.category}}</td>
                 <td>
