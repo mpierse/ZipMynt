@@ -5,13 +5,19 @@
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
+                <dt><span>Company Name</span></dt>
+                <dd>
+                    <span>{{bills.companyName}}</span>
+                </dd>
                 <dt><span>Payment Total</span></dt>
                 <dd>
                     <span>{{bills.paymentTotal}}</span>
                 </dd>
-                <dt><span>User</span></dt>
+                <dt><span>User Details</span></dt>
                 <dd>
-                    {{bills.user?.login}}
+                    <div *ngIf="bills.userDetails">
+                        <a [routerLink]="['/user-details', bills.userDetails?.id, 'view']">{{bills.userDetails?.id}}</a>
+                    </div>
                 </dd>
             </dl>
 

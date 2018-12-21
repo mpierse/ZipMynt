@@ -43,6 +43,7 @@ describe('BillItem e2e test', () => {
             billItemUpdatePage.setDueDateInput('2000-12-31'),
             billItemUpdatePage.setPaymentDateInput('2000-12-31'),
             billItemUpdatePage.setPaymentAmountInput('5'),
+            billItemUpdatePage.setMemoInput('memo'),
             billItemUpdatePage.billsSelectLastOption()
         ]);
         expect(await billItemUpdatePage.getCompanyNameInput()).to.eq('companyName');
@@ -57,6 +58,7 @@ describe('BillItem e2e test', () => {
             await billItemUpdatePage.getAutoPayInput().click();
             expect(await billItemUpdatePage.getAutoPayInput().isSelected()).to.be.true;
         }
+        expect(await billItemUpdatePage.getMemoInput()).to.eq('memo');
         await billItemUpdatePage.save();
         expect(await billItemUpdatePage.getSaveButton().isPresent()).to.be.false;
 

@@ -1,13 +1,20 @@
 import { IBillItem } from 'app/shared/model//bill-item.model';
-import { IUser } from 'app/core/user/user.model';
+import { IUserDetails } from 'app/shared/model//user-details.model';
 
 export interface IBills {
     id?: number;
+    companyName?: string;
     paymentTotal?: number;
     billItems?: IBillItem[];
-    user?: IUser;
+    userDetails?: IUserDetails;
 }
 
 export class Bills implements IBills {
-    constructor(public id?: number, public paymentTotal?: number, public billItems?: IBillItem[], public user?: IUser) {}
+    constructor(
+        public id?: number,
+        public companyName?: string,
+        public paymentTotal?: number,
+        public billItems?: IBillItem[],
+        public userDetails?: IUserDetails
+    ) {}
 }

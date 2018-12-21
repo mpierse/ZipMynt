@@ -41,7 +41,7 @@ describe('MoneyAccount e2e test', () => {
         await promise.all([
             moneyAccountUpdatePage.typeSelectLastOption(),
             moneyAccountUpdatePage.setAccountTotalInput('5'),
-            moneyAccountUpdatePage.userSelectLastOption()
+            moneyAccountUpdatePage.userDetailsSelectLastOption()
         ]);
         expect(await moneyAccountUpdatePage.getAccountTotalInput()).to.eq('5');
         await moneyAccountUpdatePage.save();

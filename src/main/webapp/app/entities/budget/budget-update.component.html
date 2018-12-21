@@ -73,10 +73,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_user">User</label>
-                    <select class="form-control" id="field_user" name="user" [(ngModel)]="budget.user" >
+                    <label class="form-control-label" for="field_userDetails">User Details</label>
+                    <select class="form-control" id="field_userDetails" name="userDetails" [(ngModel)]="budget.userDetails" >
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="userOption.id === budget.user?.id ? budget.user : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+                        <option [ngValue]="userDetailsOption.id === budget.userDetails?.id ? budget.userDetails : userDetailsOption" *ngFor="let userDetailsOption of userdetails; trackBy: trackUserDetailsById">{{userDetailsOption.id}}</option>
                     </select>
                 </div>
             </div>

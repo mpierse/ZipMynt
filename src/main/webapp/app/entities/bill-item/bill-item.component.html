@@ -20,6 +20,7 @@
             <th><span>Payment Date</span></th>
             <th><span>Payment Amount</span></th>
             <th><span>Auto Pay</span></th>
+            <th><span>Memo</span></th>
             <th><span>Bills</span></th>
             <th></th>
             </tr>
@@ -32,6 +33,7 @@
                 <td>{{billItem.paymentDate | date:'mediumDate'}}</td>
                 <td>{{billItem.paymentAmount}}</td>
                 <td>{{billItem.autoPay}}</td>
+                <td>{{billItem.memo}}</td>
                 <td>
                     <div *ngIf="billItem.bills">
                         <a [routerLink]="['../bills', billItem.bills?.id, 'view' ]" >{{billItem.bills?.id}}</a>

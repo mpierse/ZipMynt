@@ -28,7 +28,7 @@ export class MoneyAccountUpdatePage {
     cancelButton = element(by.id('cancel-save'));
     typeSelect = element(by.id('field_type'));
     accountTotalInput = element(by.id('field_accountTotal'));
-    userSelect = element(by.id('field_user'));
+    userDetailsSelect = element(by.id('field_userDetails'));
 
     async getPageTitle() {
         return this.pageTitle.getText();
@@ -57,23 +57,23 @@ export class MoneyAccountUpdatePage {
         return this.accountTotalInput.getAttribute('value');
     }
 
-    async userSelectLastOption() {
-        await this.userSelect
+    async userDetailsSelectLastOption() {
+        await this.userDetailsSelect
             .all(by.tagName('option'))
             .last()
             .click();
     }
 
-    async userSelectOption(option) {
-        await this.userSelect.sendKeys(option);
+    async userDetailsSelectOption(option) {
+        await this.userDetailsSelect.sendKeys(option);
     }
 
-    getUserSelect(): ElementFinder {
-        return this.userSelect;
+    getUserDetailsSelect(): ElementFinder {
+        return this.userDetailsSelect;
     }
 
-    async getUserSelectedOption() {
-        return this.userSelect.element(by.css('option:checked')).getText();
+    async getUserDetailsSelectedOption() {
+        return this.userDetailsSelect.element(by.css('option:checked')).getText();
     }
 
     async save() {

@@ -2,7 +2,6 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { ZipmyntSharedModule } from 'app/shared';
-import { ZipmyntAdminModule } from 'app/admin/admin.module';
 import {
     MoneyAccountComponent,
     MoneyAccountDetailComponent,
@@ -16,7 +15,7 @@ import {
 const ENTITY_STATES = [...moneyAccountRoute, ...moneyAccountPopupRoute];
 
 @NgModule({
-    imports: [ZipmyntSharedModule, ZipmyntAdminModule, RouterModule.forChild(ENTITY_STATES)],
+    imports: [ZipmyntSharedModule, RouterModule.forChild(ENTITY_STATES)],
     declarations: [
         MoneyAccountComponent,
         MoneyAccountDetailComponent,

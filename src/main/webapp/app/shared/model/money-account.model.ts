@@ -1,5 +1,5 @@
 import { ITransaction } from 'app/shared/model//transaction.model';
-import { IUser } from 'app/core/user/user.model';
+import { IUserDetails } from 'app/shared/model//user-details.model';
 
 export const enum AccountType {
     CREDIT = 'CREDIT',
@@ -13,7 +13,7 @@ export interface IMoneyAccount {
     type?: AccountType;
     accountTotal?: number;
     transactions?: ITransaction[];
-    user?: IUser;
+    userDetails?: IUserDetails;
 }
 
 export class MoneyAccount implements IMoneyAccount {
@@ -22,6 +22,6 @@ export class MoneyAccount implements IMoneyAccount {
         public type?: AccountType,
         public accountTotal?: number,
         public transactions?: ITransaction[],
-        public user?: IUser
+        public userDetails?: IUserDetails
     ) {}
 }

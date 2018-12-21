@@ -29,6 +29,10 @@ public class Bills implements Serializable {
     private Long id;
 
     @NotNull
+    @Column(name = "company_name", nullable = false)
+    private String companyName;
+
+    @NotNull
     @Column(name = "payment_total", nullable = false)
     private Long paymentTotal;
 
@@ -37,7 +41,7 @@ public class Bills implements Serializable {
     private Set<BillItem> billItems = new HashSet<>();
     @ManyToOne
     @JsonIgnoreProperties("")
-    private User user;
+    private UserDetails userDetails;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -46,6 +50,19 @@ public class Bills implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public Bills companyName(String companyName) {
+        this.companyName = companyName;
+        return this;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     public Long getPaymentTotal() {
@@ -86,17 +103,17 @@ public class Bills implements Serializable {
         this.billItems = billItems;
     }
 
-    public User getUser() {
-        return user;
+    public UserDetails getUserDetails() {
+        return userDetails;
     }
 
-    public Bills user(User user) {
-        this.user = user;
+    public Bills userDetails(UserDetails userDetails) {
+        this.userDetails = userDetails;
         return this;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserDetails(UserDetails userDetails) {
+        this.userDetails = userDetails;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -124,6 +141,7 @@ public class Bills implements Serializable {
     public String toString() {
         return "Bills{" +
             "id=" + getId() +
+            ", companyName='" + getCompanyName() + "'" +
             ", paymentTotal=" + getPaymentTotal() +
             "}";
     }

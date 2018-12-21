@@ -50,7 +50,7 @@ public class Budget implements Serializable {
     private Set<BudgetItem> budgetItems = new HashSet<>();
     @ManyToOne
     @JsonIgnoreProperties("")
-    private User user;
+    private UserDetails userDetails;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -138,17 +138,17 @@ public class Budget implements Serializable {
         this.budgetItems = budgetItems;
     }
 
-    public User getUser() {
-        return user;
+    public UserDetails getUserDetails() {
+        return userDetails;
     }
 
-    public Budget user(User user) {
-        this.user = user;
+    public Budget userDetails(UserDetails userDetails) {
+        this.userDetails = userDetails;
         return this;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserDetails(UserDetails userDetails) {
+        this.userDetails = userDetails;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
