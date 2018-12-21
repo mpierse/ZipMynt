@@ -47,6 +47,9 @@ public class BudgetItemResourceIntTest {
     private static final Long DEFAULT_ACTUAL_SPENDING = 1L;
     private static final Long UPDATED_ACTUAL_SPENDING = 2L;
 
+    private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
+    private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
+
     private static final Category DEFAULT_CATEGORY = Category.RENT;
     private static final Category UPDATED_CATEGORY = Category.FOOD;
 
@@ -94,6 +97,7 @@ public class BudgetItemResourceIntTest {
         BudgetItem budgetItem = new BudgetItem()
             .expectedSpending(DEFAULT_EXPECTED_SPENDING)
             .actualSpending(DEFAULT_ACTUAL_SPENDING)
+            .description(DEFAULT_DESCRIPTION)
             .category(DEFAULT_CATEGORY);
         return budgetItem;
     }
@@ -120,6 +124,7 @@ public class BudgetItemResourceIntTest {
         BudgetItem testBudgetItem = budgetItemList.get(budgetItemList.size() - 1);
         assertThat(testBudgetItem.getExpectedSpending()).isEqualTo(DEFAULT_EXPECTED_SPENDING);
         assertThat(testBudgetItem.getActualSpending()).isEqualTo(DEFAULT_ACTUAL_SPENDING);
+        assertThat(testBudgetItem.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
         assertThat(testBudgetItem.getCategory()).isEqualTo(DEFAULT_CATEGORY);
     }
 
@@ -191,6 +196,7 @@ public class BudgetItemResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(budgetItem.getId().intValue())))
             .andExpect(jsonPath("$.[*].expectedSpending").value(hasItem(DEFAULT_EXPECTED_SPENDING.intValue())))
             .andExpect(jsonPath("$.[*].actualSpending").value(hasItem(DEFAULT_ACTUAL_SPENDING.intValue())))
+            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].category").value(hasItem(DEFAULT_CATEGORY.toString())));
     }
     
@@ -207,6 +213,7 @@ public class BudgetItemResourceIntTest {
             .andExpect(jsonPath("$.id").value(budgetItem.getId().intValue()))
             .andExpect(jsonPath("$.expectedSpending").value(DEFAULT_EXPECTED_SPENDING.intValue()))
             .andExpect(jsonPath("$.actualSpending").value(DEFAULT_ACTUAL_SPENDING.intValue()))
+            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.category").value(DEFAULT_CATEGORY.toString()));
     }
 
@@ -233,6 +240,7 @@ public class BudgetItemResourceIntTest {
         updatedBudgetItem
             .expectedSpending(UPDATED_EXPECTED_SPENDING)
             .actualSpending(UPDATED_ACTUAL_SPENDING)
+            .description(UPDATED_DESCRIPTION)
             .category(UPDATED_CATEGORY);
 
         restBudgetItemMockMvc.perform(put("/api/budget-items")
@@ -246,6 +254,7 @@ public class BudgetItemResourceIntTest {
         BudgetItem testBudgetItem = budgetItemList.get(budgetItemList.size() - 1);
         assertThat(testBudgetItem.getExpectedSpending()).isEqualTo(UPDATED_EXPECTED_SPENDING);
         assertThat(testBudgetItem.getActualSpending()).isEqualTo(UPDATED_ACTUAL_SPENDING);
+        assertThat(testBudgetItem.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
         assertThat(testBudgetItem.getCategory()).isEqualTo(UPDATED_CATEGORY);
     }
 

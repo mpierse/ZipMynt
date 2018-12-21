@@ -40,6 +40,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = ZipmyntApp.class)
 public class BillsResourceIntTest {
 
+    private static final String DEFAULT_COMPANY_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_COMPANY_NAME = "BBBBBBBBBB";
+
     private static final Long DEFAULT_PAYMENT_TOTAL = 1L;
     private static final Long UPDATED_PAYMENT_TOTAL = 2L;
 
@@ -85,6 +88,7 @@ public class BillsResourceIntTest {
      */
     public static Bills createEntity(EntityManager em) {
         Bills bills = new Bills()
+            .companyName(DEFAULT_COMPANY_NAME)
             .paymentTotal(DEFAULT_PAYMENT_TOTAL);
         return bills;
     }
@@ -109,6 +113,7 @@ public class BillsResourceIntTest {
         List<Bills> billsList = billsRepository.findAll();
         assertThat(billsList).hasSize(databaseSizeBeforeCreate + 1);
         Bills testBills = billsList.get(billsList.size() - 1);
+        assertThat(testBills.getCompanyName()).isEqualTo(DEFAULT_COMPANY_NAME);
         assertThat(testBills.getPaymentTotal()).isEqualTo(DEFAULT_PAYMENT_TOTAL);
     }
 
@@ -129,6 +134,24 @@ public class BillsResourceIntTest {
         // Validate the Bills in the database
         List<Bills> billsList = billsRepository.findAll();
         assertThat(billsList).hasSize(databaseSizeBeforeCreate);
+    }
+
+    @Test
+    @Transactional
+    public void checkCompanyNameIsRequired() throws Exception {
+        int databaseSizeBeforeTest = billsRepository.findAll().size();
+        // set the field null
+        bills.setCompanyName(null);
+
+        // Create the Bills, which fails.
+
+        restBillsMockMvc.perform(post("/api/bills")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(bills)))
+            .andExpect(status().isBadRequest());
+
+        List<Bills> billsList = billsRepository.findAll();
+        assertThat(billsList).hasSize(databaseSizeBeforeTest);
     }
 
     @Test
@@ -160,6 +183,7 @@ public class BillsResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(bills.getId().intValue())))
+            .andExpect(jsonPath("$.[*].companyName").value(hasItem(DEFAULT_COMPANY_NAME.toString())))
             .andExpect(jsonPath("$.[*].paymentTotal").value(hasItem(DEFAULT_PAYMENT_TOTAL.intValue())));
     }
     
@@ -174,6 +198,7 @@ public class BillsResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(bills.getId().intValue()))
+            .andExpect(jsonPath("$.companyName").value(DEFAULT_COMPANY_NAME.toString()))
             .andExpect(jsonPath("$.paymentTotal").value(DEFAULT_PAYMENT_TOTAL.intValue()));
     }
 
@@ -198,6 +223,7 @@ public class BillsResourceIntTest {
         // Disconnect from session so that the updates on updatedBills are not directly saved in db
         em.detach(updatedBills);
         updatedBills
+            .companyName(UPDATED_COMPANY_NAME)
             .paymentTotal(UPDATED_PAYMENT_TOTAL);
 
         restBillsMockMvc.perform(put("/api/bills")
@@ -209,6 +235,7 @@ public class BillsResourceIntTest {
         List<Bills> billsList = billsRepository.findAll();
         assertThat(billsList).hasSize(databaseSizeBeforeUpdate);
         Bills testBills = billsList.get(billsList.size() - 1);
+        assertThat(testBills.getCompanyName()).isEqualTo(UPDATED_COMPANY_NAME);
         assertThat(testBills.getPaymentTotal()).isEqualTo(UPDATED_PAYMENT_TOTAL);
     }
 

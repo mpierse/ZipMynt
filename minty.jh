@@ -1,15 +1,24 @@
 entity MoneyAccount {
     type AccountType required,
+    accountId String required,
+    description String required,
     accountTotal Long required
 }
+
+entity UserDetails {
+	
+}
+
 entity Transaction {
     amount Long required,
     transactionType TransactionType required,
+    accountId String required,
     dateTime LocalDate required,
-    description String required,
+    descriptionID String required,
     memo String,
     category Category
 }
+
 entity Budget {
     expectedTotal Long required,
     actualTotal Long required,
@@ -19,10 +28,12 @@ entity Budget {
 entity BudgetItem {
     expectedSpending Long required,
     actualSpending Long,
+    description String,
     category Category required
 }
 entity Bills {
-    paymentTotal Long required,
+	companyName String required,
+    paymentTotal Long required
 }
 entity BillItem {
     companyName String required,
@@ -30,6 +41,7 @@ entity BillItem {
     paymentDate LocalDate required,
     paymentAmount Long required,
     autoPay Boolean,
+    memo String required
 }
 enum TransactionType {
     CREDIT, 
@@ -52,14 +64,18 @@ enum AccountType {
     LOAN
 }
 
+relationship OneToOne {
+	UserDetails{user(id)} to User
+}
+
 relationship OneToMany {
 	MoneyAccount{transactions} to Transaction,
     Budget{budgetItems} to BudgetItem,
     Bills{billItems} to BillItem
 }
 relationship ManyToOne {
-    MoneyAccount{user(login)} to User,
-    Bills{user(login)} to User,
-    Budget{user(login)} to User
+    MoneyAccount{userDetails(id)} to UserDetails,
+    Bills{userDetails(id)} to UserDetails,
+    Budget{userDetails(id)} to UserDetails
     
 }

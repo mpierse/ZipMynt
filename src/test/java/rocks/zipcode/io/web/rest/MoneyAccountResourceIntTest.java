@@ -44,6 +44,12 @@ public class MoneyAccountResourceIntTest {
     private static final AccountType DEFAULT_TYPE = AccountType.CREDIT;
     private static final AccountType UPDATED_TYPE = AccountType.CHECKING;
 
+    private static final String DEFAULT_ACCOUNT_ID = "AAAAAAAAAA";
+    private static final String UPDATED_ACCOUNT_ID = "BBBBBBBBBB";
+
+    private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
+    private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
+
     private static final Long DEFAULT_ACCOUNT_TOTAL = 1L;
     private static final Long UPDATED_ACCOUNT_TOTAL = 2L;
 
@@ -90,6 +96,8 @@ public class MoneyAccountResourceIntTest {
     public static MoneyAccount createEntity(EntityManager em) {
         MoneyAccount moneyAccount = new MoneyAccount()
             .type(DEFAULT_TYPE)
+            .accountId(DEFAULT_ACCOUNT_ID)
+            .description(DEFAULT_DESCRIPTION)
             .accountTotal(DEFAULT_ACCOUNT_TOTAL);
         return moneyAccount;
     }
@@ -115,6 +123,8 @@ public class MoneyAccountResourceIntTest {
         assertThat(moneyAccountList).hasSize(databaseSizeBeforeCreate + 1);
         MoneyAccount testMoneyAccount = moneyAccountList.get(moneyAccountList.size() - 1);
         assertThat(testMoneyAccount.getType()).isEqualTo(DEFAULT_TYPE);
+        assertThat(testMoneyAccount.getAccountId()).isEqualTo(DEFAULT_ACCOUNT_ID);
+        assertThat(testMoneyAccount.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
         assertThat(testMoneyAccount.getAccountTotal()).isEqualTo(DEFAULT_ACCOUNT_TOTAL);
     }
 
@@ -157,6 +167,42 @@ public class MoneyAccountResourceIntTest {
 
     @Test
     @Transactional
+    public void checkAccountIdIsRequired() throws Exception {
+        int databaseSizeBeforeTest = moneyAccountRepository.findAll().size();
+        // set the field null
+        moneyAccount.setAccountId(null);
+
+        // Create the MoneyAccount, which fails.
+
+        restMoneyAccountMockMvc.perform(post("/api/money-accounts")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(moneyAccount)))
+            .andExpect(status().isBadRequest());
+
+        List<MoneyAccount> moneyAccountList = moneyAccountRepository.findAll();
+        assertThat(moneyAccountList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkDescriptionIsRequired() throws Exception {
+        int databaseSizeBeforeTest = moneyAccountRepository.findAll().size();
+        // set the field null
+        moneyAccount.setDescription(null);
+
+        // Create the MoneyAccount, which fails.
+
+        restMoneyAccountMockMvc.perform(post("/api/money-accounts")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(moneyAccount)))
+            .andExpect(status().isBadRequest());
+
+        List<MoneyAccount> moneyAccountList = moneyAccountRepository.findAll();
+        assertThat(moneyAccountList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void checkAccountTotalIsRequired() throws Exception {
         int databaseSizeBeforeTest = moneyAccountRepository.findAll().size();
         // set the field null
@@ -185,6 +231,8 @@ public class MoneyAccountResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(moneyAccount.getId().intValue())))
             .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())))
+            .andExpect(jsonPath("$.[*].accountId").value(hasItem(DEFAULT_ACCOUNT_ID.toString())))
+            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].accountTotal").value(hasItem(DEFAULT_ACCOUNT_TOTAL.intValue())));
     }
     
@@ -200,6 +248,8 @@ public class MoneyAccountResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(moneyAccount.getId().intValue()))
             .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()))
+            .andExpect(jsonPath("$.accountId").value(DEFAULT_ACCOUNT_ID.toString()))
+            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.accountTotal").value(DEFAULT_ACCOUNT_TOTAL.intValue()));
     }
 
@@ -225,6 +275,8 @@ public class MoneyAccountResourceIntTest {
         em.detach(updatedMoneyAccount);
         updatedMoneyAccount
             .type(UPDATED_TYPE)
+            .accountId(UPDATED_ACCOUNT_ID)
+            .description(UPDATED_DESCRIPTION)
             .accountTotal(UPDATED_ACCOUNT_TOTAL);
 
         restMoneyAccountMockMvc.perform(put("/api/money-accounts")
@@ -237,6 +289,8 @@ public class MoneyAccountResourceIntTest {
         assertThat(moneyAccountList).hasSize(databaseSizeBeforeUpdate);
         MoneyAccount testMoneyAccount = moneyAccountList.get(moneyAccountList.size() - 1);
         assertThat(testMoneyAccount.getType()).isEqualTo(UPDATED_TYPE);
+        assertThat(testMoneyAccount.getAccountId()).isEqualTo(UPDATED_ACCOUNT_ID);
+        assertThat(testMoneyAccount.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
         assertThat(testMoneyAccount.getAccountTotal()).isEqualTo(UPDATED_ACCOUNT_TOTAL);
     }
 

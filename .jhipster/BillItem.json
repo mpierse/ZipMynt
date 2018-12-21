@@ -32,6 +32,13 @@
         {
             "fieldName": "autoPay",
             "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "memo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
         }
     ],
     "relationships": [

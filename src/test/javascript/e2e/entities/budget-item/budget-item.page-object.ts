@@ -28,6 +28,7 @@ export class BudgetItemUpdatePage {
     cancelButton = element(by.id('cancel-save'));
     expectedSpendingInput = element(by.id('field_expectedSpending'));
     actualSpendingInput = element(by.id('field_actualSpending'));
+    descriptionInput = element(by.id('field_description'));
     categorySelect = element(by.id('field_category'));
     budgetSelect = element(by.id('field_budget'));
 
@@ -49,6 +50,14 @@ export class BudgetItemUpdatePage {
 
     async getActualSpendingInput() {
         return this.actualSpendingInput.getAttribute('value');
+    }
+
+    async setDescriptionInput(description) {
+        await this.descriptionInput.sendKeys(description);
+    }
+
+    async getDescriptionInput() {
+        return this.descriptionInput.getAttribute('value');
     }
 
     async setCategorySelect(category) {

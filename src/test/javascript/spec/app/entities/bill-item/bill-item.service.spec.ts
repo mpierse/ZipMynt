@@ -25,7 +25,7 @@ describe('Service Tests', () => {
             httpMock = injector.get(HttpTestingController);
             currentDate = moment();
 
-            elemDefault = new BillItem(0, 'AAAAAAA', currentDate, currentDate, 0, false);
+            elemDefault = new BillItem(0, 'AAAAAAA', currentDate, currentDate, 0, false, 'AAAAAAA');
         });
 
         describe('Service methods', async () => {
@@ -77,7 +77,8 @@ describe('Service Tests', () => {
                         dueDate: currentDate.format(DATE_FORMAT),
                         paymentDate: currentDate.format(DATE_FORMAT),
                         paymentAmount: 1,
-                        autoPay: true
+                        autoPay: true,
+                        memo: 'BBBBBB'
                     },
                     elemDefault
                 );
@@ -104,7 +105,8 @@ describe('Service Tests', () => {
                         dueDate: currentDate.format(DATE_FORMAT),
                         paymentDate: currentDate.format(DATE_FORMAT),
                         paymentAmount: 1,
-                        autoPay: true
+                        autoPay: true,
+                        memo: 'BBBBBB'
                     },
                     elemDefault
                 );

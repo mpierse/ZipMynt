@@ -40,12 +40,16 @@ public class Transaction implements Serializable {
     private TransactionType transactionType;
 
     @NotNull
+    @Column(name = "account_id", nullable = false)
+    private String accountId;
+
+    @NotNull
     @Column(name = "date_time", nullable = false)
     private LocalDate dateTime;
 
     @NotNull
-    @Column(name = "description", nullable = false)
-    private String description;
+    @Column(name = "description_id", nullable = false)
+    private String descriptionID;
 
     @Column(name = "memo")
     private String memo;
@@ -93,6 +97,19 @@ public class Transaction implements Serializable {
         this.transactionType = transactionType;
     }
 
+    public String getAccountId() {
+        return accountId;
+    }
+
+    public Transaction accountId(String accountId) {
+        this.accountId = accountId;
+        return this;
+    }
+
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
+    }
+
     public LocalDate getDateTime() {
         return dateTime;
     }
@@ -106,17 +123,17 @@ public class Transaction implements Serializable {
         this.dateTime = dateTime;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescriptionID() {
+        return descriptionID;
     }
 
-    public Transaction description(String description) {
-        this.description = description;
+    public Transaction descriptionID(String descriptionID) {
+        this.descriptionID = descriptionID;
         return this;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescriptionID(String descriptionID) {
+        this.descriptionID = descriptionID;
     }
 
     public String getMemo() {
@@ -185,8 +202,9 @@ public class Transaction implements Serializable {
             "id=" + getId() +
             ", amount=" + getAmount() +
             ", transactionType='" + getTransactionType() + "'" +
+            ", accountId='" + getAccountId() + "'" +
             ", dateTime='" + getDateTime() + "'" +
-            ", description='" + getDescription() + "'" +
+            ", descriptionID='" + getDescriptionID() + "'" +
             ", memo='" + getMemo() + "'" +
             ", category='" + getCategory() + "'" +
             "}";

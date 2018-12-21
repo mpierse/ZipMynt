@@ -45,6 +45,10 @@ public class BillItem implements Serializable {
     @Column(name = "auto_pay")
     private Boolean autoPay;
 
+    @NotNull
+    @Column(name = "memo", nullable = false)
+    private String memo;
+
     @ManyToOne
     @JsonIgnoreProperties("billItems")
     private Bills bills;
@@ -123,6 +127,19 @@ public class BillItem implements Serializable {
         this.autoPay = autoPay;
     }
 
+    public String getMemo() {
+        return memo;
+    }
+
+    public BillItem memo(String memo) {
+        this.memo = memo;
+        return this;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
+
     public Bills getBills() {
         return bills;
     }
@@ -166,6 +183,7 @@ public class BillItem implements Serializable {
             ", paymentDate='" + getPaymentDate() + "'" +
             ", paymentAmount=" + getPaymentAmount() +
             ", autoPay='" + isAutoPay() + "'" +
+            ", memo='" + getMemo() + "'" +
             "}";
     }
 }

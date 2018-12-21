@@ -41,6 +41,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="memo" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
             <column name="bills_id" type="bigint">
                 <constraints nullable="true" />
             </column>

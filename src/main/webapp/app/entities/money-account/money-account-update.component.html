@@ -25,6 +25,28 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="form-control-label" for="field_accountId">Account Id</label>
+                    <input type="text" class="form-control" name="accountId" id="field_accountId"
+                        [(ngModel)]="moneyAccount.accountId" required/>
+                    <div [hidden]="!(editForm.controls.accountId?.dirty && editForm.controls.accountId?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.accountId?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                        [(ngModel)]="moneyAccount.description" required/>
+                    <div [hidden]="!(editForm.controls.description?.dirty && editForm.controls.description?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.description?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="form-control-label" for="field_accountTotal">Account Total</label>
                     <input type="number" class="form-control" name="accountTotal" id="field_accountTotal"
                         [(ngModel)]="moneyAccount.accountTotal" required/>
@@ -41,10 +63,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_user">User</label>
-                    <select class="form-control" id="field_user" name="user" [(ngModel)]="moneyAccount.user" >
+                    <label class="form-control-label" for="field_userDetails">User Details</label>
+                    <select class="form-control" id="field_userDetails" name="userDetails" [(ngModel)]="moneyAccount.userDetails" >
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="userOption.id === moneyAccount.user?.id ? moneyAccount.user : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+                        <option [ngValue]="userDetailsOption.id === moneyAccount.userDetails?.id ? moneyAccount.userDetails : userDetailsOption" *ngFor="let userDetailsOption of userdetails; trackBy: trackUserDetailsById">{{userDetailsOption.id}}</option>
                     </select>
                 </div>
             </div>

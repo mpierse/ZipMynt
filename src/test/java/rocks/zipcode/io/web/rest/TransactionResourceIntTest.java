@@ -50,11 +50,14 @@ public class TransactionResourceIntTest {
     private static final TransactionType DEFAULT_TRANSACTION_TYPE = TransactionType.CREDIT;
     private static final TransactionType UPDATED_TRANSACTION_TYPE = TransactionType.DEBIT;
 
+    private static final String DEFAULT_ACCOUNT_ID = "AAAAAAAAAA";
+    private static final String UPDATED_ACCOUNT_ID = "BBBBBBBBBB";
+
     private static final LocalDate DEFAULT_DATE_TIME = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_DATE_TIME = LocalDate.now(ZoneId.systemDefault());
 
-    private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
-    private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
+    private static final String DEFAULT_DESCRIPTION_ID = "AAAAAAAAAA";
+    private static final String UPDATED_DESCRIPTION_ID = "BBBBBBBBBB";
 
     private static final String DEFAULT_MEMO = "AAAAAAAAAA";
     private static final String UPDATED_MEMO = "BBBBBBBBBB";
@@ -106,8 +109,9 @@ public class TransactionResourceIntTest {
         Transaction transaction = new Transaction()
             .amount(DEFAULT_AMOUNT)
             .transactionType(DEFAULT_TRANSACTION_TYPE)
+            .accountId(DEFAULT_ACCOUNT_ID)
             .dateTime(DEFAULT_DATE_TIME)
-            .description(DEFAULT_DESCRIPTION)
+            .descriptionID(DEFAULT_DESCRIPTION_ID)
             .memo(DEFAULT_MEMO)
             .category(DEFAULT_CATEGORY);
         return transaction;
@@ -135,8 +139,9 @@ public class TransactionResourceIntTest {
         Transaction testTransaction = transactionList.get(transactionList.size() - 1);
         assertThat(testTransaction.getAmount()).isEqualTo(DEFAULT_AMOUNT);
         assertThat(testTransaction.getTransactionType()).isEqualTo(DEFAULT_TRANSACTION_TYPE);
+        assertThat(testTransaction.getAccountId()).isEqualTo(DEFAULT_ACCOUNT_ID);
         assertThat(testTransaction.getDateTime()).isEqualTo(DEFAULT_DATE_TIME);
-        assertThat(testTransaction.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
+        assertThat(testTransaction.getDescriptionID()).isEqualTo(DEFAULT_DESCRIPTION_ID);
         assertThat(testTransaction.getMemo()).isEqualTo(DEFAULT_MEMO);
         assertThat(testTransaction.getCategory()).isEqualTo(DEFAULT_CATEGORY);
     }
@@ -198,6 +203,24 @@ public class TransactionResourceIntTest {
 
     @Test
     @Transactional
+    public void checkAccountIdIsRequired() throws Exception {
+        int databaseSizeBeforeTest = transactionRepository.findAll().size();
+        // set the field null
+        transaction.setAccountId(null);
+
+        // Create the Transaction, which fails.
+
+        restTransactionMockMvc.perform(post("/api/transactions")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(transaction)))
+            .andExpect(status().isBadRequest());
+
+        List<Transaction> transactionList = transactionRepository.findAll();
+        assertThat(transactionList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void checkDateTimeIsRequired() throws Exception {
         int databaseSizeBeforeTest = transactionRepository.findAll().size();
         // set the field null
@@ -216,10 +239,10 @@ public class TransactionResourceIntTest {
 
     @Test
     @Transactional
-    public void checkDescriptionIsRequired() throws Exception {
+    public void checkDescriptionIDIsRequired() throws Exception {
         int databaseSizeBeforeTest = transactionRepository.findAll().size();
         // set the field null
-        transaction.setDescription(null);
+        transaction.setDescriptionID(null);
 
         // Create the Transaction, which fails.
 
@@ -245,8 +268,9 @@ public class TransactionResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(transaction.getId().intValue())))
             .andExpect(jsonPath("$.[*].amount").value(hasItem(DEFAULT_AMOUNT.intValue())))
             .andExpect(jsonPath("$.[*].transactionType").value(hasItem(DEFAULT_TRANSACTION_TYPE.toString())))
+            .andExpect(jsonPath("$.[*].accountId").value(hasItem(DEFAULT_ACCOUNT_ID.toString())))
             .andExpect(jsonPath("$.[*].dateTime").value(hasItem(DEFAULT_DATE_TIME.toString())))
-            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
+            .andExpect(jsonPath("$.[*].descriptionID").value(hasItem(DEFAULT_DESCRIPTION_ID.toString())))
             .andExpect(jsonPath("$.[*].memo").value(hasItem(DEFAULT_MEMO.toString())))
             .andExpect(jsonPath("$.[*].category").value(hasItem(DEFAULT_CATEGORY.toString())));
     }
@@ -264,8 +288,9 @@ public class TransactionResourceIntTest {
             .andExpect(jsonPath("$.id").value(transaction.getId().intValue()))
             .andExpect(jsonPath("$.amount").value(DEFAULT_AMOUNT.intValue()))
             .andExpect(jsonPath("$.transactionType").value(DEFAULT_TRANSACTION_TYPE.toString()))
+            .andExpect(jsonPath("$.accountId").value(DEFAULT_ACCOUNT_ID.toString()))
             .andExpect(jsonPath("$.dateTime").value(DEFAULT_DATE_TIME.toString()))
-            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
+            .andExpect(jsonPath("$.descriptionID").value(DEFAULT_DESCRIPTION_ID.toString()))
             .andExpect(jsonPath("$.memo").value(DEFAULT_MEMO.toString()))
             .andExpect(jsonPath("$.category").value(DEFAULT_CATEGORY.toString()));
     }
@@ -293,8 +318,9 @@ public class TransactionResourceIntTest {
         updatedTransaction
             .amount(UPDATED_AMOUNT)
             .transactionType(UPDATED_TRANSACTION_TYPE)
+            .accountId(UPDATED_ACCOUNT_ID)
             .dateTime(UPDATED_DATE_TIME)
-            .description(UPDATED_DESCRIPTION)
+            .descriptionID(UPDATED_DESCRIPTION_ID)
             .memo(UPDATED_MEMO)
             .category(UPDATED_CATEGORY);
 
@@ -309,8 +335,9 @@ public class TransactionResourceIntTest {
         Transaction testTransaction = transactionList.get(transactionList.size() - 1);
         assertThat(testTransaction.getAmount()).isEqualTo(UPDATED_AMOUNT);
         assertThat(testTransaction.getTransactionType()).isEqualTo(UPDATED_TRANSACTION_TYPE);
+        assertThat(testTransaction.getAccountId()).isEqualTo(UPDATED_ACCOUNT_ID);
         assertThat(testTransaction.getDateTime()).isEqualTo(UPDATED_DATE_TIME);
-        assertThat(testTransaction.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
+        assertThat(testTransaction.getDescriptionID()).isEqualTo(UPDATED_DESCRIPTION_ID);
         assertThat(testTransaction.getMemo()).isEqualTo(UPDATED_MEMO);
         assertThat(testTransaction.getCategory()).isEqualTo(UPDATED_CATEGORY);
     }

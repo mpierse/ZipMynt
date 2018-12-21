@@ -43,7 +43,7 @@ describe('Budget e2e test', () => {
             budgetUpdatePage.setActualTotalInput('5'),
             budgetUpdatePage.setStartDateInput('2000-12-31'),
             budgetUpdatePage.setEndDateInput('2000-12-31'),
-            budgetUpdatePage.userSelectLastOption()
+            budgetUpdatePage.userDetailsSelectLastOption()
         ]);
         expect(await budgetUpdatePage.getExpectedTotalInput()).to.eq('5');
         expect(await budgetUpdatePage.getActualTotalInput()).to.eq('5');

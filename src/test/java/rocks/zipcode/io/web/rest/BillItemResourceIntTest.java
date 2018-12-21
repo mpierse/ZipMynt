@@ -57,6 +57,9 @@ public class BillItemResourceIntTest {
     private static final Boolean DEFAULT_AUTO_PAY = false;
     private static final Boolean UPDATED_AUTO_PAY = true;
 
+    private static final String DEFAULT_MEMO = "AAAAAAAAAA";
+    private static final String UPDATED_MEMO = "BBBBBBBBBB";
+
     @Autowired
     private BillItemRepository billItemRepository;
 
@@ -103,7 +106,8 @@ public class BillItemResourceIntTest {
             .dueDate(DEFAULT_DUE_DATE)
             .paymentDate(DEFAULT_PAYMENT_DATE)
             .paymentAmount(DEFAULT_PAYMENT_AMOUNT)
-            .autoPay(DEFAULT_AUTO_PAY);
+            .autoPay(DEFAULT_AUTO_PAY)
+            .memo(DEFAULT_MEMO);
         return billItem;
     }
 
@@ -132,6 +136,7 @@ public class BillItemResourceIntTest {
         assertThat(testBillItem.getPaymentDate()).isEqualTo(DEFAULT_PAYMENT_DATE);
         assertThat(testBillItem.getPaymentAmount()).isEqualTo(DEFAULT_PAYMENT_AMOUNT);
         assertThat(testBillItem.isAutoPay()).isEqualTo(DEFAULT_AUTO_PAY);
+        assertThat(testBillItem.getMemo()).isEqualTo(DEFAULT_MEMO);
     }
 
     @Test
@@ -227,6 +232,24 @@ public class BillItemResourceIntTest {
 
     @Test
     @Transactional
+    public void checkMemoIsRequired() throws Exception {
+        int databaseSizeBeforeTest = billItemRepository.findAll().size();
+        // set the field null
+        billItem.setMemo(null);
+
+        // Create the BillItem, which fails.
+
+        restBillItemMockMvc.perform(post("/api/bill-items")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(billItem)))
+            .andExpect(status().isBadRequest());
+
+        List<BillItem> billItemList = billItemRepository.findAll();
+        assertThat(billItemList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllBillItems() throws Exception {
         // Initialize the database
         billItemRepository.saveAndFlush(billItem);
@@ -240,7 +263,8 @@ public class BillItemResourceIntTest {
             .andExpect(jsonPath("$.[*].dueDate").value(hasItem(DEFAULT_DUE_DATE.toString())))
             .andExpect(jsonPath("$.[*].paymentDate").value(hasItem(DEFAULT_PAYMENT_DATE.toString())))
             .andExpect(jsonPath("$.[*].paymentAmount").value(hasItem(DEFAULT_PAYMENT_AMOUNT.intValue())))
-            .andExpect(jsonPath("$.[*].autoPay").value(hasItem(DEFAULT_AUTO_PAY.booleanValue())));
+            .andExpect(jsonPath("$.[*].autoPay").value(hasItem(DEFAULT_AUTO_PAY.booleanValue())))
+            .andExpect(jsonPath("$.[*].memo").value(hasItem(DEFAULT_MEMO.toString())));
     }
     
     @Test
@@ -258,7 +282,8 @@ public class BillItemResourceIntTest {
             .andExpect(jsonPath("$.dueDate").value(DEFAULT_DUE_DATE.toString()))
             .andExpect(jsonPath("$.paymentDate").value(DEFAULT_PAYMENT_DATE.toString()))
             .andExpect(jsonPath("$.paymentAmount").value(DEFAULT_PAYMENT_AMOUNT.intValue()))
-            .andExpect(jsonPath("$.autoPay").value(DEFAULT_AUTO_PAY.booleanValue()));
+            .andExpect(jsonPath("$.autoPay").value(DEFAULT_AUTO_PAY.booleanValue()))
+            .andExpect(jsonPath("$.memo").value(DEFAULT_MEMO.toString()));
     }
 
     @Test
@@ -286,7 +311,8 @@ public class BillItemResourceIntTest {
             .dueDate(UPDATED_DUE_DATE)
             .paymentDate(UPDATED_PAYMENT_DATE)
             .paymentAmount(UPDATED_PAYMENT_AMOUNT)
-            .autoPay(UPDATED_AUTO_PAY);
+            .autoPay(UPDATED_AUTO_PAY)
+            .memo(UPDATED_MEMO);
 
         restBillItemMockMvc.perform(put("/api/bill-items")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -302,6 +328,7 @@ public class BillItemResourceIntTest {
         assertThat(testBillItem.getPaymentDate()).isEqualTo(UPDATED_PAYMENT_DATE);
         assertThat(testBillItem.getPaymentAmount()).isEqualTo(UPDATED_PAYMENT_AMOUNT);
         assertThat(testBillItem.isAutoPay()).isEqualTo(UPDATED_AUTO_PAY);
+        assertThat(testBillItem.getMemo()).isEqualTo(UPDATED_MEMO);
     }
 
     @Test

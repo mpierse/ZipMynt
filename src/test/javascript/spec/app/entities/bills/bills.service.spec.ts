@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(BillsService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new Bills(0, 0);
+            elemDefault = new Bills(0, 'AAAAAAA', 0);
         });
 
         describe('Service methods', async () => {
@@ -55,6 +55,7 @@ describe('Service Tests', () => {
             it('should update a Bills', async () => {
                 const returnedFromService = Object.assign(
                     {
+                        companyName: 'BBBBBB',
                         paymentTotal: 1
                     },
                     elemDefault
@@ -72,6 +73,7 @@ describe('Service Tests', () => {
             it('should return a list of Bills', async () => {
                 const returnedFromService = Object.assign(
                     {
+                        companyName: 'BBBBBB',
                         paymentTotal: 1
                     },
                     elemDefault
