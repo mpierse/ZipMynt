@@ -1,2 +1,4 @@
 id;amount;transaction_type;account_id;date_time;description_id;memo;category;money_account_id
-1;20;DEBIT;2;2018-12-20;PANERA_BREAD;lunch with friends;FOOD;1
+1;20;CREDIT;2;2018-12-20;PANERA_BREAD;lunch with friends;FOOD;1
+2;6000;DEBIT;2;2018-12-20;TD Checking;savings transfer;TRANSFER;3
+3;50;DEBIT;2;2018-12-20;TD Checking;white elephant gift;SHOPPING;3

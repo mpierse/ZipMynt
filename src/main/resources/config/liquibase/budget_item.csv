@@ -1,2 +1,3 @@
 id;expected_spending;actual_spending;description;category;budget_id
 1;500;250;I like eating;FOOD;1
+2;1200;600;Apartment Rent;RENT;1
