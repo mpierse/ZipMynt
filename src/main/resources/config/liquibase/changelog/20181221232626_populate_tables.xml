@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+    <changeSet author="trinh" id="loadData-example">
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/user_details.csv"
+                  separator=";"
+                  tableName="user_details">
+        </loadData>
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/money_accounts.csv"
+                  separator=";"
+                  tableName="money_account">
+        </loadData>
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/transaction.csv"
+                  separator=";"
+                  tableName="transaction">
+        </loadData>
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/budget.csv"
+                  separator=";"
+                  tableName="budget">
+        </loadData>
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/budget_item.csv"
+                  separator=";"
+                  tableName="budget_item">
+        </loadData>
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/bills.csv"
+                  separator=";"
+                  tableName="bills">
+        </loadData>
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/bill_item.csv"
+                  separator=";"
+                  tableName="bill_item">
+        </loadData>
+    </changeSet>
+</databaseChangeLog>
