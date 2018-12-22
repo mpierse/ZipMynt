@@ -17,6 +17,10 @@ E2E in development.
 -   [jHipster](https://start.jhipster.tech/#/) - Application generator
 -   [Maven](https://maven.apache.org/) - Dependency Management
 
+## External APIs and Resources
+
+-   [Plaid](https://plaid.com/docs/) - Financial data aggregation API
+
 ## Versioning
 
 v0.0 - Currently in development.
