@@ -8,11 +8,13 @@
             <div *ngSwitchCase="true">
                 <span id="home-logged-message" *ngIf="account"
                    > You are logged in as user "{{account.login}}". </span>
-
-                <!-- Add Account Info here? -->
                 <div>
-
-
+                    Updated div component
+                    <!-- Add plaid component here? -->
+                    <mr-ngx-plaid-link-button env="sandbox" publicKey="e4bee6ab88c1786cd5ec5b7bef7795" institution="" (Success)="onPlaidSuccess($event)"
+                    (Exit)="onPlaidExit($event)" (Load)="onPlaidLoad($event)" (Event)="onPlaidEvent($event)" className="launch-plaid-link-button"
+                    buttonText="Link Your Bank Account" (Click)="onPlaidClick($event)"></mr-ngx-plaid-link-button>
+            
                 </div>
             </div>
             <br>
