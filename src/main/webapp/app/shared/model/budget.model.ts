@@ -1,6 +1,6 @@
 import { Moment } from 'moment';
 import { IBudgetItem } from 'app/shared/model//budget-item.model';
-import { IUser } from 'app/core/user/user.model';
+import { IUserDetails } from 'app/shared/model//user-details.model';
 
 export interface IBudget {
     id?: number;
@@ -9,7 +9,7 @@ export interface IBudget {
     startDate?: Moment;
     endDate?: Moment;
     budgetItems?: IBudgetItem[];
-    user?: IUser;
+    userDetails?: IUserDetails;
 }
 
 export class Budget implements IBudget {
@@ -20,6 +20,6 @@ export class Budget implements IBudget {
         public startDate?: Moment,
         public endDate?: Moment,
         public budgetItems?: IBudgetItem[],
-        public user?: IUser
+        public userDetails?: IUserDetails
     ) {}
 }

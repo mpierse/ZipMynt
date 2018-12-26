@@ -28,8 +28,9 @@ export class TransactionUpdatePage {
     cancelButton = element(by.id('cancel-save'));
     amountInput = element(by.id('field_amount'));
     transactionTypeSelect = element(by.id('field_transactionType'));
+    accountIdInput = element(by.id('field_accountId'));
     dateTimeInput = element(by.id('field_dateTime'));
-    descriptionInput = element(by.id('field_description'));
+    descriptionIDInput = element(by.id('field_descriptionID'));
     memoInput = element(by.id('field_memo'));
     categorySelect = element(by.id('field_category'));
     moneyAccountSelect = element(by.id('field_moneyAccount'));
@@ -61,6 +62,14 @@ export class TransactionUpdatePage {
             .click();
     }
 
+    async setAccountIdInput(accountId) {
+        await this.accountIdInput.sendKeys(accountId);
+    }
+
+    async getAccountIdInput() {
+        return this.accountIdInput.getAttribute('value');
+    }
+
     async setDateTimeInput(dateTime) {
         await this.dateTimeInput.sendKeys(dateTime);
     }
@@ -69,12 +78,12 @@ export class TransactionUpdatePage {
         return this.dateTimeInput.getAttribute('value');
     }
 
-    async setDescriptionInput(description) {
-        await this.descriptionInput.sendKeys(description);
+    async setDescriptionIDInput(descriptionID) {
+        await this.descriptionIDInput.sendKeys(descriptionID);
     }
 
-    async getDescriptionInput() {
-        return this.descriptionInput.getAttribute('value');
+    async getDescriptionIDInput() {
+        return this.descriptionIDInput.getAttribute('value');
     }
 
     async setMemoInput(memo) {

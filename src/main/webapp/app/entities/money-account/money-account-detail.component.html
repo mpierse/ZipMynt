@@ -9,13 +9,23 @@
                 <dd>
                     <span>{{moneyAccount.type}}</span>
                 </dd>
+                <dt><span>Account Id</span></dt>
+                <dd>
+                    <span>{{moneyAccount.accountId}}</span>
+                </dd>
+                <dt><span>Description</span></dt>
+                <dd>
+                    <span>{{moneyAccount.description}}</span>
+                </dd>
                 <dt><span>Account Total</span></dt>
                 <dd>
                     <span>{{moneyAccount.accountTotal}}</span>
                 </dd>
-                <dt><span>User</span></dt>
+                <dt><span>User Details</span></dt>
                 <dd>
-                    {{moneyAccount.user?.login}}
+                    <div *ngIf="moneyAccount.userDetails">
+                        <a [routerLink]="['/user-details', moneyAccount.userDetails?.id, 'view']">{{moneyAccount.userDetails?.id}}</a>
+                    </div>
                 </dd>
             </dl>
 

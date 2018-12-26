@@ -31,6 +31,7 @@ export class BillItemUpdatePage {
     paymentDateInput = element(by.id('field_paymentDate'));
     paymentAmountInput = element(by.id('field_paymentAmount'));
     autoPayInput = element(by.id('field_autoPay'));
+    memoInput = element(by.id('field_memo'));
     billsSelect = element(by.id('field_bills'));
 
     async getPageTitle() {
@@ -71,6 +72,13 @@ export class BillItemUpdatePage {
 
     getAutoPayInput() {
         return this.autoPayInput;
+    }
+    async setMemoInput(memo) {
+        await this.memoInput.sendKeys(memo);
+    }
+
+    async getMemoInput() {
+        return this.memoInput.getAttribute('value');
     }
 
     async billsSelectLastOption() {

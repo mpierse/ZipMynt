@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(MoneyAccountService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new MoneyAccount(0, AccountType.CREDIT, 0);
+            elemDefault = new MoneyAccount(0, AccountType.CREDIT, 'AAAAAAA', 'AAAAAAA', 0);
         });
 
         describe('Service methods', async () => {
@@ -56,6 +56,8 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         type: 'BBBBBB',
+                        accountId: 'BBBBBB',
+                        description: 'BBBBBB',
                         accountTotal: 1
                     },
                     elemDefault
@@ -74,6 +76,8 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         type: 'BBBBBB',
+                        accountId: 'BBBBBB',
+                        description: 'BBBBBB',
                         accountTotal: 1
                     },
                     elemDefault

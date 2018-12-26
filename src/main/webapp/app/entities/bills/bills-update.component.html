@@ -10,6 +10,17 @@
                         [(ngModel)]="bills.id" readonly />
                 </div>
                 <div class="form-group">
+                    <label class="form-control-label" for="field_companyName">Company Name</label>
+                    <input type="text" class="form-control" name="companyName" id="field_companyName"
+                        [(ngModel)]="bills.companyName" required/>
+                    <div [hidden]="!(editForm.controls.companyName?.dirty && editForm.controls.companyName?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.companyName?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="form-control-label" for="field_paymentTotal">Payment Total</label>
                     <input type="number" class="form-control" name="paymentTotal" id="field_paymentTotal"
                         [(ngModel)]="bills.paymentTotal" required/>
@@ -26,10 +37,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_user">User</label>
-                    <select class="form-control" id="field_user" name="user" [(ngModel)]="bills.user" >
+                    <label class="form-control-label" for="field_userDetails">User Details</label>
+                    <select class="form-control" id="field_userDetails" name="userDetails" [(ngModel)]="bills.userDetails" >
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="userOption.id === bills.user?.id ? bills.user : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+                        <option [ngValue]="userDetailsOption.id === bills.userDetails?.id ? bills.userDetails : userDetailsOption" *ngFor="let userDetailsOption of userdetails; trackBy: trackUserDetailsById">{{userDetailsOption.id}}</option>
                     </select>
                 </div>
             </div>

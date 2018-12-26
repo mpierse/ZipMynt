@@ -26,11 +26,20 @@ export class BillsUpdatePage {
     pageTitle = element(by.id('jhi-bills-heading'));
     saveButton = element(by.id('save-entity'));
     cancelButton = element(by.id('cancel-save'));
+    companyNameInput = element(by.id('field_companyName'));
     paymentTotalInput = element(by.id('field_paymentTotal'));
-    userSelect = element(by.id('field_user'));
+    userDetailsSelect = element(by.id('field_userDetails'));
 
     async getPageTitle() {
         return this.pageTitle.getText();
+    }
+
+    async setCompanyNameInput(companyName) {
+        await this.companyNameInput.sendKeys(companyName);
+    }
+
+    async getCompanyNameInput() {
+        return this.companyNameInput.getAttribute('value');
     }
 
     async setPaymentTotalInput(paymentTotal) {
@@ -41,23 +50,23 @@ export class BillsUpdatePage {
         return this.paymentTotalInput.getAttribute('value');
     }
 
-    async userSelectLastOption() {
-        await this.userSelect
+    async userDetailsSelectLastOption() {
+        await this.userDetailsSelect
             .all(by.tagName('option'))
             .last()
             .click();
     }
 
-    async userSelectOption(option) {
-        await this.userSelect.sendKeys(option);
+    async userDetailsSelectOption(option) {
+        await this.userDetailsSelect.sendKeys(option);
     }
 
-    getUserSelect(): ElementFinder {
-        return this.userSelect;
+    getUserDetailsSelect(): ElementFinder {
+        return this.userDetailsSelect;
     }
 
-    async getUserSelectedOption() {
-        return this.userSelect.element(by.css('option:checked')).getText();
+    async getUserDetailsSelectedOption() {
+        return this.userDetailsSelect.element(by.css('option:checked')).getText();
     }
 
     async save() {

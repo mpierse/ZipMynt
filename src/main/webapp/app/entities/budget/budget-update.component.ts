@@ -7,7 +7,8 @@ import { JhiAlertService } from 'ng-jhipster';
 
 import { IBudget } from 'app/shared/model/budget.model';
 import { BudgetService } from './budget.service';
-import { IUser, UserService } from 'app/core';
+import { IUserDetails } from 'app/shared/model/user-details.model';
+import { UserDetailsService } from 'app/entities/user-details';
 
 @Component({
     selector: 'jhi-budget-update',
@@ -17,14 +18,14 @@ export class BudgetUpdateComponent implements OnInit {
     budget: IBudget;
     isSaving: boolean;
 
-    users: IUser[];
+    userdetails: IUserDetails[];
     startDateDp: any;
     endDateDp: any;
 
     constructor(
         protected jhiAlertService: JhiAlertService,
         protected budgetService: BudgetService,
-        protected userService: UserService,
+        protected userDetailsService: UserDetailsService,
         protected activatedRoute: ActivatedRoute
     ) {}
 
@@ -33,9 +34,9 @@ export class BudgetUpdateComponent implements OnInit {
         this.activatedRoute.data.subscribe(({ budget }) => {
             this.budget = budget;
         });
-        this.userService.query().subscribe(
-            (res: HttpResponse<IUser[]>) => {
-                this.users = res.body;
+        this.userDetailsService.query().subscribe(
+            (res: HttpResponse<IUserDetails[]>) => {
+                this.userdetails = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -71,7 +72,7 @@ export class BudgetUpdateComponent implements OnInit {
         this.jhiAlertService.error(errorMessage, null, null);
     }
 
-    trackUserById(index: number, item: IUser) {
+    trackUserDetailsById(index: number, item: IUserDetails) {
         return item.id;
     }
 }

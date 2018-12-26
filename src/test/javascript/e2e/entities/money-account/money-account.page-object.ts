@@ -27,8 +27,10 @@ export class MoneyAccountUpdatePage {
     saveButton = element(by.id('save-entity'));
     cancelButton = element(by.id('cancel-save'));
     typeSelect = element(by.id('field_type'));
+    accountIdInput = element(by.id('field_accountId'));
+    descriptionInput = element(by.id('field_description'));
     accountTotalInput = element(by.id('field_accountTotal'));
-    userSelect = element(by.id('field_user'));
+    userDetailsSelect = element(by.id('field_userDetails'));
 
     async getPageTitle() {
         return this.pageTitle.getText();
@@ -49,6 +51,22 @@ export class MoneyAccountUpdatePage {
             .click();
     }
 
+    async setAccountIdInput(accountId) {
+        await this.accountIdInput.sendKeys(accountId);
+    }
+
+    async getAccountIdInput() {
+        return this.accountIdInput.getAttribute('value');
+    }
+
+    async setDescriptionInput(description) {
+        await this.descriptionInput.sendKeys(description);
+    }
+
+    async getDescriptionInput() {
+        return this.descriptionInput.getAttribute('value');
+    }
+
     async setAccountTotalInput(accountTotal) {
         await this.accountTotalInput.sendKeys(accountTotal);
     }
@@ -57,23 +75,23 @@ export class MoneyAccountUpdatePage {
         return this.accountTotalInput.getAttribute('value');
     }
 
-    async userSelectLastOption() {
-        await this.userSelect
+    async userDetailsSelectLastOption() {
+        await this.userDetailsSelect
             .all(by.tagName('option'))
             .last()
             .click();
     }
 
-    async userSelectOption(option) {
-        await this.userSelect.sendKeys(option);
+    async userDetailsSelectOption(option) {
+        await this.userDetailsSelect.sendKeys(option);
     }
 
-    getUserSelect(): ElementFinder {
-        return this.userSelect;
+    getUserDetailsSelect(): ElementFinder {
+        return this.userDetailsSelect;
     }
 
-    async getUserSelectedOption() {
-        return this.userSelect.element(by.css('option:checked')).getText();
+    async getUserDetailsSelectedOption() {
+        return this.userDetailsSelect.element(by.css('option:checked')).getText();
     }
 
     async save() {

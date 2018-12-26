@@ -38,6 +38,17 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="form-control-label" for="field_accountId">Account Id</label>
+                    <input type="text" class="form-control" name="accountId" id="field_accountId"
+                        [(ngModel)]="transaction.accountId" required/>
+                    <div [hidden]="!(editForm.controls.accountId?.dirty && editForm.controls.accountId?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.accountId?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="form-control-label" for="field_dateTime">Date Time</label>
                     <div class="input-group">
                         <input id="field_dateTime" type="text" class="form-control" name="dateTime" ngbDatepicker  #dateTimeDp="ngbDatepicker" [(ngModel)]="transaction.dateTime"
@@ -54,12 +65,12 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" for="field_description">Description</label>
-                    <input type="text" class="form-control" name="description" id="field_description"
-                        [(ngModel)]="transaction.description" required/>
-                    <div [hidden]="!(editForm.controls.description?.dirty && editForm.controls.description?.invalid)">
+                    <label class="form-control-label" for="field_descriptionID">Description ID</label>
+                    <input type="text" class="form-control" name="descriptionID" id="field_descriptionID"
+                        [(ngModel)]="transaction.descriptionID" required/>
+                    <div [hidden]="!(editForm.controls.descriptionID?.dirty && editForm.controls.descriptionID?.invalid)">
                         <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.description?.errors?.required">
+                        [hidden]="!editForm.controls.descriptionID?.errors?.required">
                         This field is required.
                         </small>
                     </div>

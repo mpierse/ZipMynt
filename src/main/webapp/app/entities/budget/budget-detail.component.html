@@ -21,9 +21,11 @@
                 <dd>
                     <span>{{budget.endDate}}</span>
                 </dd>
-                <dt><span>User</span></dt>
+                <dt><span>User Details</span></dt>
                 <dd>
-                    {{budget.user?.login}}
+                    <div *ngIf="budget.userDetails">
+                        <a [routerLink]="['/user-details', budget.userDetails?.id, 'view']">{{budget.userDetails?.id}}</a>
+                    </div>
                 </dd>
             </dl>
 

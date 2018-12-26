@@ -13,6 +13,10 @@
             "fieldType": "Long"
         },
         {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
             "fieldName": "category",
             "fieldType": "Category",
             "fieldValues": "RENT,FOOD,INCOME,UTILITIES,SHOPPING,TRANSFER,AUTOMOTIVE,MISCELLANEOUS",

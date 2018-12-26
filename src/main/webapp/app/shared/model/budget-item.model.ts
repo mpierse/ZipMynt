@@ -15,6 +15,7 @@ export interface IBudgetItem {
     id?: number;
     expectedSpending?: number;
     actualSpending?: number;
+    description?: string;
     category?: Category;
     budget?: IBudget;
 }
@@ -24,6 +25,7 @@ export class BudgetItem implements IBudgetItem {
         public id?: number,
         public expectedSpending?: number,
         public actualSpending?: number,
+        public description?: string,
         public category?: Category,
         public budget?: IBudget
     ) {}

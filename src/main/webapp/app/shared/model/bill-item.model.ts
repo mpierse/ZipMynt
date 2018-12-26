@@ -8,6 +8,7 @@ export interface IBillItem {
     paymentDate?: Moment;
     paymentAmount?: number;
     autoPay?: boolean;
+    memo?: string;
     bills?: IBills;
 }
 
@@ -19,6 +20,7 @@ export class BillItem implements IBillItem {
         public paymentDate?: Moment,
         public paymentAmount?: number,
         public autoPay?: boolean,
+        public memo?: string,
         public bills?: IBills
     ) {
         this.autoPay = this.autoPay || false;

@@ -6,6 +6,7 @@ import { ZipmyntBudgetModule } from './budget/budget.module';
 import { ZipmyntBudgetItemModule } from './budget-item/budget-item.module';
 import { ZipmyntBillsModule } from './bills/bills.module';
 import { ZipmyntBillItemModule } from './bill-item/bill-item.module';
+import { ZipmyntUserDetailsModule } from './user-details/user-details.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -17,6 +18,7 @@ import { ZipmyntBillItemModule } from './bill-item/bill-item.module';
         ZipmyntBudgetItemModule,
         ZipmyntBillsModule,
         ZipmyntBillItemModule,
+        ZipmyntUserDetailsModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

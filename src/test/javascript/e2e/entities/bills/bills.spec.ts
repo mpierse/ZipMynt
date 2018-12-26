@@ -38,7 +38,12 @@ describe('Bills e2e test', () => {
         const nbButtonsBeforeCreate = await billsComponentsPage.countDeleteButtons();
 
         await billsComponentsPage.clickOnCreateButton();
-        await promise.all([billsUpdatePage.setPaymentTotalInput('5'), billsUpdatePage.userSelectLastOption()]);
+        await promise.all([
+            billsUpdatePage.setCompanyNameInput('companyName'),
+            billsUpdatePage.setPaymentTotalInput('5'),
+            billsUpdatePage.userDetailsSelectLastOption()
+        ]);
+        expect(await billsUpdatePage.getCompanyNameInput()).to.eq('companyName');
         expect(await billsUpdatePage.getPaymentTotalInput()).to.eq('5');
         await billsUpdatePage.save();
         expect(await billsUpdatePage.getSaveButton().isPresent()).to.be.false;

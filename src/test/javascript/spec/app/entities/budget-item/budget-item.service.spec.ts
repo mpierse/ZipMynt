@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(BudgetItemService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new BudgetItem(0, 0, 0, Category.RENT);
+            elemDefault = new BudgetItem(0, 0, 0, 'AAAAAAA', Category.RENT);
         });
 
         describe('Service methods', async () => {
@@ -57,6 +57,7 @@ describe('Service Tests', () => {
                     {
                         expectedSpending: 1,
                         actualSpending: 1,
+                        description: 'BBBBBB',
                         category: 'BBBBBB'
                     },
                     elemDefault
@@ -76,6 +77,7 @@ describe('Service Tests', () => {
                     {
                         expectedSpending: 1,
                         actualSpending: 1,
+                        description: 'BBBBBB',
                         category: 'BBBBBB'
                     },
                     elemDefault
