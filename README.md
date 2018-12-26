@@ -17,9 +17,9 @@ E2E in development.
 -   [jHipster](https://start.jhipster.tech/#/) - Application generator
 -   [Maven](https://maven.apache.org/) - Dependency Management
 
-## Contributing
+## External APIs and Resources
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+-   [Plaid](https://plaid.com/docs/) - Financial data aggregation API
 
 ## Versioning
 

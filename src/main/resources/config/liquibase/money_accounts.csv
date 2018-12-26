@@ -1,0 +1,4 @@
+id;jhi_type;account_id;description;account_total;user_details_id
+1;CREDIT;Barclays;Credit Card;2000;1
+2;CHECKING;TDBANK;Checking Account;500;1
+3;SAVINGS;TDBANK;Savings Account;6000;1
