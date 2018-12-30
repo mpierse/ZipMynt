@@ -117,4 +117,40 @@ public class BudgetItemResource {
         budgetItemRepository.deleteById(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+    /**
+     * GET  /budget-items : get all the budgetItems with given budgetId.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of budgetItems in body
+     */
+    @GetMapping("/budget-items/budget-{budgetId}")
+    @Timed
+    public List<BudgetItem> getAllBudgetItemsByBudgetId(@PathVariable Long budgetId) {
+        log.debug("REST request to get all BudgetItems : budget-{}", budgetId);
+        return budgetItemRepository.findAllBudgetItemsByBudgetId(budgetId);
+    }
+
+    /**
+     * GET  /budget-items : get all the over budget budgetItems.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of budgetItems in body
+     */
+    @GetMapping("/budget-items/overbudget")
+    @Timed
+    public List<BudgetItem> getAllOverBudgetBudgetItems() {
+        log.debug("REST request to get all over budget BudgetItems");
+        return budgetItemRepository.findAllBudgetItemsOverBudget();
+    }
+
+    /**
+     * GET  /budget-items : get all the under budget budgetItems.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of budgetItems in body
+     */
+    @GetMapping("/budget-items/underbudget")
+    @Timed
+    public List<BudgetItem> getAllUnderBudgetBudgetItems() {
+        log.debug("REST request to get all under budget BudgetItems");
+        return budgetItemRepository.findAllBudgetItemsUnderBudget();
+    }
 }
