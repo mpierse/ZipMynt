@@ -4,3 +4,4 @@ export * from './budget-item-delete-dialog.component';
 export * from './budget-item-detail.component';
 export * from './budget-item.component';
 export * from './budget-item.route';
+export * from './budget-item.module';
