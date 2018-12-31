@@ -11,11 +11,12 @@ import {
     budgetRoute,
     budgetPopupRoute
 } from './';
+import { ZipmyntBudgetItemModule } from 'app/entities/budget-item/budget-item.module';
 
 const ENTITY_STATES = [...budgetRoute, ...budgetPopupRoute];
 
 @NgModule({
-    imports: [ZipmyntSharedModule, RouterModule.forChild(ENTITY_STATES)],
+    imports: [ZipmyntSharedModule, RouterModule.forChild(ENTITY_STATES), ZipmyntBudgetItemModule],
     declarations: [BudgetComponent, BudgetDetailComponent, BudgetUpdateComponent, BudgetDeleteDialogComponent, BudgetDeletePopupComponent],
     entryComponents: [BudgetComponent, BudgetUpdateComponent, BudgetDeleteDialogComponent, BudgetDeletePopupComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
