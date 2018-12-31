@@ -11,6 +11,7 @@ import { BillsDetailComponent } from './bills-detail.component';
 import { BillsUpdateComponent } from './bills-update.component';
 import { BillsDeletePopupComponent } from './bills-delete-dialog.component';
 import { IBills } from 'app/shared/model/bills.model';
+import { BillItemResolve, BillItemComponent } from '../bill-item';
 
 @Injectable({ providedIn: 'root' })
 export class BillsResolve implements Resolve<IBills> {
@@ -47,6 +48,18 @@ export const billsRoute: Routes = [
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'Bills'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+    {
+        path: 'bill-item/:companyName/view',
+        component: BillItemComponent,
+        resolve: {
+            billitem: BillItemResolve
+        },
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'BillItems'
         },
         canActivate: [UserRouteAccessService]
     },
