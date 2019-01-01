@@ -5,20 +5,15 @@
                 <span id="home-logged-message" *ngIf="account">
                     <br>
                     Welcome back, {{account.login}}!<br><br><br>
-            </span>
+                </span>
                 <div  style="text-align: left">
                     <h3>Your snapshot for {{today | date}}:</h3>
                     <hr><br>
                     <h5>Most recent transactions:</h5>
+                    <jhi-transaction></jhi-transaction>
+                    <!-- <jhi-transaction-card></jhi-transaction-card> -->
                     <h5>This month's budget outlook:</h5>
                     <h5>Upcoming bills:</h5>
-
-                    <!-- Add plaid component here? -->
-                    <!-- <mr-ngx-plaid-link-button env="sandbox" publicKey="e4bee6ab88c1786cd5ec5b7bef7795" institution="" (Success)="onPlaidSuccess($event)"
-                    (Exit)="onPlaidExit($event)" (Load)="onPlaidLoad($event)" (Event)="onPlaidEvent($event)" className="launch-plaid-link-button"
-                    buttonText="Link Your Bank Account" (Click)="onPlaidClick($event)"></mr-ngx-plaid-link-button>
-             -->
-
                 </div>
             </div>
             <br>
