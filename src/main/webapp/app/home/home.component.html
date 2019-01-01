@@ -1,22 +1,36 @@
 <div class="row justify-content-center">
-    <div class="col-md-6" style="text-align: center">
+    
         <div [ngSwitch]="isAuthenticated()">
             <div *ngSwitchCase="true">
                 <span id="home-logged-message" *ngIf="account">
                     <br>
                     Welcome back, {{account.login}}!<br><br><br>
-                </span>
-                <div  style="text-align: left">
                     <h3>Your snapshot for {{today | date}}:</h3>
                     <hr><br>
-                    <h5>Most recent transactions:</h5>
-                    <jhi-transaction></jhi-transaction>
+                </span>
+                <div class="row">
+                <div class="col-md-4" style="text-align: center">
+                    <div style="text-align: left">
+                        <h5>Most recent transactions:</h5>
+                        <jhi-transaction></jhi-transaction>
+                    </div>
+                </div>
+                <div class="col-md-4" style="text-align: center">
+                    <div style="text-align: left">
+                        <h5>This month's budget outlook:</h5>
+                        <!-- <jhi-transaction></jhi-transaction> -->
+                    </div>
+                </div>
+                <div class="col-md-4" style="text-align: center">
+                    <div style="text-align: left">
+                        <h5>Upcoming bills:</h5>
+                        <!-- <jhi-transaction></jhi-transaction> -->
+                    </div>
                     <!-- <jhi-transaction-card></jhi-transaction-card> -->
-                    <h5>This month's budget outlook:</h5>
-                    <h5>Upcoming bills:</h5>
                 </div>
             </div>
-            <br>
+            <div class="col-md-12" style="text-align: center">
+                <br>
             <div *ngSwitchCase="false">
                 <span class="logo img-fluid rounded" ></span>
                 <p class="lead">A money management app created by Cohort 4.2 @ Zip Code Wilmington!</p>
