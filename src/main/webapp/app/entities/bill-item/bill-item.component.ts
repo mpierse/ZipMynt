@@ -40,7 +40,7 @@ export class BillItemComponent implements OnInit, OnDestroy {
         );
     }
     ngOnInit() {
-        // this.loadAll();
+        this.loadAll();
         this.loadByCompanyname();
         this.accountService.identity().then(account => {
             this.currentAccount = account;
