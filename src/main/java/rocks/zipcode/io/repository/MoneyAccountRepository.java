@@ -15,6 +15,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MoneyAccountRepository extends JpaRepository<MoneyAccount, Long> {
 
-    @Query(value = "SELECT * FROM MONEY_ACCOUNT", nativeQuery = true)
+    @Query(value = "SELECT * FROM MONEY_ACCOUNT LEFT JOIN JHI_USER ON JHI_USER.ID = MONEY_ACCOUNT.USER_DETAILS_ID  WHERE JHI_USER.LOGIN = ?#{principal?.username}", nativeQuery = true)
     List<MoneyAccount> findByUserIsCurrentUser();
 }
