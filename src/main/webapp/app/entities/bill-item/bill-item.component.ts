@@ -31,16 +31,17 @@ export class BillItemComponent implements OnInit, OnDestroy {
             (res: HttpErrorResponse) => this.onError(res.message)
         );
     }
-    // loadByCompany() {
-    //     this.billItemService.queryByCompany().subscribe(
-    //         (res: HttpResponse<IBillItem[]>) => {
-    //             this.billItems = res.body;
-    //         },
-    //         (res: HttpErrorResponse) => this.onError(res.message)
-    //     );
-    // }
+    loadByCompanyname() {
+        this.billItemService.queryByCompany().subscribe(
+            (res: HttpResponse<IBillItem[]>) => {
+                this.billItems = res.body;
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
+    }
     ngOnInit() {
         this.loadAll();
+        this.loadByCompanyname();
         this.accountService.identity().then(account => {
             this.currentAccount = account;
         });
@@ -56,7 +57,7 @@ export class BillItemComponent implements OnInit, OnDestroy {
     }
 
     registerChangeInBillItems() {
-        this.eventSubscriber = this.eventManager.subscribe('billItemListModification', response => this.loadAll());
+        this.eventSubscriber = this.eventManager.subscribe('billItemListModification', response => this.loadByCompanyname());
     }
 
     protected onError(errorMessage: string) {

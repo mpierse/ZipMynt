@@ -1,13 +1,13 @@
 <div>
     <h2 id="page-heading">
         <span>Bill Items</span>
-        <label><span style="float:right"> search by month </span></label>
-        <select class ="drop-down-list  float-right">
+        <!-- <label><span style="float:right"> search by month </span></label> -->
+        <!-- <select class ="drop-down-list  float-right">
             <option value="January">Comcast</option>
             <option value="February">Peco</option>
             <option value="March">Hydro
             </option>
-          </select>
+          </select> -->
           <select class ="drop-down-list  float-right">
             <option value="January">January</option>
             <option value="February">February</option>
@@ -33,7 +33,7 @@
         </button> -->
     </h2>
     <jhi-alert></jhi-alert>
-    <br/>
+    <br/>    
     <div class="table-responsive" *ngIf="billItems">
         <table class="table table-striped">
             <thead>
@@ -57,7 +57,7 @@
                 <td>{{billItem.paymentDate | date:'mediumDate'}}</td>
                 <td>{{billItem.paymentAmount}}</td>
                 <td>{{billItem.autoPay}}</td>
-                <td>{{billItem.memo}}</td>
+                <td>{{billItem.memo}}</td>            
                 <td>
                     <div *ngIf="billItem.bills">
                         <a [routerLink]="['../bills', billItem.bills?.id, 'view' ]" >{{billItem.bills?.id}}</a>
