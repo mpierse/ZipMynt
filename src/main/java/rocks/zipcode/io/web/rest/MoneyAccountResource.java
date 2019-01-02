@@ -86,7 +86,7 @@ public class MoneyAccountResource {
     @Timed
     public List<MoneyAccount> getAllMoneyAccounts() {
         log.debug("REST request to get all MoneyAccounts");
-        return moneyAccountRepository.findAll();
+        return moneyAccountRepository.findByUserIsCurrentUser();
     }
 
     /**
