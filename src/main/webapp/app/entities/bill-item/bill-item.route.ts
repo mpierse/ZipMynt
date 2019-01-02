@@ -50,7 +50,18 @@ export const billItemRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     },
-
+    {
+        path: 'bill-item/:id/Paid',
+        component: BillItemComponent,
+        resolve: {
+            billItem: BillItemResolve
+        },
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'BillItems'
+        },
+        canActivate: [UserRouteAccessService]
+    },
     {
         path: 'bill-item/new',
         component: BillItemUpdateComponent,

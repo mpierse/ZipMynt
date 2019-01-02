@@ -72,13 +72,13 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label class="form-control-label" for="field_userDetails">User Details</label>
                     <select class="form-control" id="field_userDetails" name="userDetails" [(ngModel)]="budget.userDetails" >
                         <option [ngValue]="null"></option>
                         <option [ngValue]="userDetailsOption.id === budget.userDetails?.id ? budget.userDetails : userDetailsOption" *ngFor="let userDetailsOption of userdetails; trackBy: trackUserDetailsById">{{userDetailsOption.id}}</option>
                     </select>
-                </div>
+                </div> -->
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
