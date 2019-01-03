@@ -1,22 +1,43 @@
 <div class="row justify-content-center">
-    <div class="col-md-6" style="text-align: center">
-        <span class="logo img-fluid rounded" ></span>
-        <!-- <h1 class="display-4">Welcome to ZipMynt!</h1> -->
-        <p class="lead">A money management app created by Cohort 4.2 @ Zip Code Wilmington!</p>
-
+    
         <div [ngSwitch]="isAuthenticated()">
             <div *ngSwitchCase="true">
-                <span id="home-logged-message" *ngIf="account"
-                   > You are logged in as user "{{account.login}}". </span>
+                <span id="home-logged-message" *ngIf="account">
+                    <br>
+                    Welcome back, {{account.login}}!<br><br><br>
+                    <h3>Your snapshot for {{today | date}}:</h3>
+                    <hr><br>
+                </span>
+                <div class="row">
+                <div class="col-md-4" style="text-align: center">
+                    <div style="text-align: left">
+                        <h5>Most recent transactions:</h5>
+                        <jhi-transaction></jhi-transaction>
+                    </div>
+                </div>
+                <div class="col-md-4" style="text-align: center">
+                    <div style="text-align: left">
+                        <h5>This month's budget outlook:</h5>
+                        <!-- Budget component -->
+                        <jhi-budget-snapshot></jhi-budget-snapshot>
 
-                <!-- Add Account Info here? -->
-                <div>
-
+                    </div>
+                </div>
+                <div class="col-md-4" style="text-align: center">
+                    <div style="text-align: left">
+                        <h5>Upcoming bills:</h5>
+                        <jhi-bill-snapshot></jhi-bill-snapshot>
+                        <!-- Bills Component -->
+                    </div>
 
                 </div>
             </div>
-            <br>
+            </div>
+            <div class="col-md-12" style="text-align: center">
+                <br>
             <div *ngSwitchCase="false">
+                <span class="logo img-fluid rounded" ></span>
+                <p class="lead">A money management app created by Cohort 4.2 @ Zip Code Wilmington!</p>
                 <span>Please,  </span>
                 <a class="alert-link" (click)="login()">sign in</a>.
                 <hr>
