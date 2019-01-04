@@ -31,17 +31,9 @@ export class BillItemComponent implements OnInit, OnDestroy {
             (res: HttpErrorResponse) => this.onError(res.message)
         );
     }
-    loadByCompanyname() {
-        this.billItemService.queryByCompany().subscribe(
-            (res: HttpResponse<IBillItem[]>) => {
-                this.billItems = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
-    }
+
     ngOnInit() {
         this.loadAll();
-        this.loadByCompanyname();
         this.accountService.identity().then(account => {
             this.currentAccount = account;
         });
