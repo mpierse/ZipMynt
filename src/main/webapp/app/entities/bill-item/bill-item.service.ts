@@ -45,6 +45,12 @@ export class BillItemService {
             .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
     }
 
+    queryByCompany(companyname?: string): Observable<EntityArrayResponseType> {
+        const options = createRequestOption(companyname);
+        return this.http
+            .get<IBillItem[]>(this.resourceUrl, { params: options, observe: 'response' })
+            .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+    }
     delete(id: number): Observable<HttpResponse<any>> {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
     }
