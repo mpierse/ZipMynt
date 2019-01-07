@@ -6,8 +6,6 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { IBudget } from 'app/shared/model/budget.model';
 import { AccountService } from 'app/core';
 import { BudgetService } from './budget.service';
-import { BudgetItemService } from 'app/entities/budget-item';
-import { IBudgetItem } from 'app/shared/model/budget-item.model';
 
 @Component({
     selector: 'jhi-budget',
@@ -17,14 +15,11 @@ export class BudgetComponent implements OnInit, OnDestroy {
     budgets: IBudget[];
     currentAccount: any;
     eventSubscriber: Subscription;
-    budgetItems: IBudgetItem[];
-
     constructor(
         protected budgetService: BudgetService,
         protected jhiAlertService: JhiAlertService,
         protected eventManager: JhiEventManager,
-        protected accountService: AccountService,
-        protected budgetItemSerive: BudgetItemService
+        protected accountService: AccountService
     ) {}
 
     loadAll() {
@@ -36,18 +31,8 @@ export class BudgetComponent implements OnInit, OnDestroy {
         );
     }
 
-    loadItems() {
-        this.budgetItemSerive.query().subscribe(
-            (res: HttpResponse<IBudgetItem[]>) => {
-                this.budgetItems = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
-    }
-
     ngOnInit() {
         this.loadAll();
-        this.loadItems();
         this.accountService.identity().then(account => {
             this.currentAccount = account;
         });
@@ -59,10 +44,6 @@ export class BudgetComponent implements OnInit, OnDestroy {
     }
 
     trackId(index: number, item: IBudget) {
-        return item.id;
-    }
-
-    trackItemsId(index: number, item: IBudgetItem) {
         return item.id;
     }
 
