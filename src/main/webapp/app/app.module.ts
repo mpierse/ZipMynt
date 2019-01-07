@@ -18,7 +18,6 @@ import { ZipmyntHomeModule } from './home/home.module';
 import { ZipmyntAccountModule } from './account/account.module';
 import { ZipmyntEntityModule } from './entities/entity.module';
 import * as moment from 'moment';
-import { NgxPlaidLinkModule } from 'ngx-plaid-link';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ErrorComponent } from './layouts';
 
@@ -26,7 +25,6 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
     imports: [
         BrowserModule,
         ZipmyntAppRoutingModule,
-        NgxPlaidLinkModule,
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-' }),
         NgJhipsterModule.forRoot({
             // set below to true to make alerts look like toast
