@@ -1,14 +1,3 @@
-.first {
-    height: 25px;
-    width: 100%;
-    background: #ddd;
-}
-
-.second {
-    height: 25px;
-    background: #b1f6d7;
-}
-
 .bar {
     background-color: #427ae3;
     box-shadow: 0 -1px 1px rgba(0, 0, 0, 0.15) inset;
@@ -17,6 +6,15 @@
     height: 100%;
     position: relative;
     text-align: left;
+}
+
+.progress {
+    background-color: #bdd3fb;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15) inset;
+    height: 27px;
+    margin-bottom: 2%;
+    overflow: hidden;
 }
 
 .bar > .percent {

@@ -6,15 +6,13 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./budget-snapshot-tracker.component.css']
 })
 export class BudgetSnapshotTrackerComponent implements OnInit {
-    name: any;
-    subPlease: any;
     width: any;
 
-    // fundData = [{
-    //     'fund': 'General',
-    //     'goal': '10000',
-    //     'raised': '4650',
-    // }];
+    fundData = {
+        fund: 'General',
+        goal: '10000',
+        raised: '4650'
+    };
 
     ngOnInit() {
         this.width = 45;
