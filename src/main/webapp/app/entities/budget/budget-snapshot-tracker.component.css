@@ -1,7 +1,7 @@
 .bar {
-    background-color: #427ae3;
+    background-color: #b1f6d9;
     box-shadow: 0 -1px 1px rgba(0, 0, 0, 0.15) inset;
-    color: #fff;
+    color: #000001;
     float: left;
     height: 100%;
     position: relative;
@@ -9,7 +9,7 @@
 }
 
 .progress {
-    background-color: #bdd3fb;
+    background-color: #f1f2f4;
     border-radius: 4px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15) inset;
     height: 27px;
