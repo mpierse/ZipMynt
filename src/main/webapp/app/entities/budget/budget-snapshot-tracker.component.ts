@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
     selector: 'jhi-budget-snapshot-tracker',
@@ -6,15 +6,9 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./budget-snapshot-tracker.component.css']
 })
 export class BudgetSnapshotTrackerComponent implements OnInit {
-    width: any;
+    @Input() budgetCategory: string;
+    @Input() budgetExpected: number;
+    @Input() budgetActual: number;
 
-    fundData = {
-        fund: 'General',
-        goal: '10000',
-        raised: '4650'
-    };
-
-    ngOnInit() {
-        this.width = 45;
-    }
+    ngOnInit() {}
 }
