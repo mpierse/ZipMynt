@@ -12,12 +12,29 @@ import {
     billsPopupRoute
 } from './';
 
+import { BillSnapshotComponent } from './bill-snapshot.component';
+
 const ENTITY_STATES = [...billsRoute, ...billsPopupRoute];
 
 @NgModule({
     imports: [ZipmyntSharedModule, RouterModule.forChild(ENTITY_STATES)],
-    declarations: [BillsComponent, BillsDetailComponent, BillsUpdateComponent, BillsDeleteDialogComponent, BillsDeletePopupComponent],
+    declarations: [
+        BillsComponent,
+        BillsDetailComponent,
+        BillsUpdateComponent,
+        BillsDeleteDialogComponent,
+        BillsDeletePopupComponent,
+        BillSnapshotComponent
+    ],
     entryComponents: [BillsComponent, BillsUpdateComponent, BillsDeleteDialogComponent, BillsDeletePopupComponent],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    exports: [
+        BillsComponent,
+        BillsDetailComponent,
+        BillsUpdateComponent,
+        BillsDeleteDialogComponent,
+        BillsDeletePopupComponent,
+        BillSnapshotComponent
+    ]
 })
 export class ZipmyntBillsModule {}

@@ -1,5 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { NgxPlaidLinkModule } from 'ngx-plaid-link';
 
 import { ZipmyntSharedModule } from 'app/shared';
 import {
@@ -15,7 +16,7 @@ import {
 const ENTITY_STATES = [...moneyAccountRoute, ...moneyAccountPopupRoute];
 
 @NgModule({
-    imports: [ZipmyntSharedModule, RouterModule.forChild(ENTITY_STATES)],
+    imports: [ZipmyntSharedModule, NgxPlaidLinkModule, RouterModule.forChild(ENTITY_STATES)],
     declarations: [
         MoneyAccountComponent,
         MoneyAccountDetailComponent,
