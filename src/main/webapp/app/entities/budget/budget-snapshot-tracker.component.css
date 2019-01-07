@@ -1,0 +1,38 @@
+.first {
+    height: 25px;
+    width: 100%;
+    background: #ddd;
+}
+
+.second {
+    height: 25px;
+    background: #b1f6d7;
+}
+
+.bar {
+    background-color: #427ae3;
+    box-shadow: 0 -1px 1px rgba(0, 0, 0, 0.15) inset;
+    color: #fff;
+    float: left;
+    height: 100%;
+    position: relative;
+    text-align: left;
+}
+
+.bar > .percent {
+    font-size: 0.9rem;
+    left: 8px;
+    position: absolute;
+    top: 3px;
+}
+
+.fund {
+    background-color: rgba(0, 0, 0, 0.06);
+    border-radius: 4px;
+    margin: 0 0 4%;
+    padding: 2.5% 3.5%;
+}
+
+.fund:last-child {
+    margin-bottom: 4%;
+}

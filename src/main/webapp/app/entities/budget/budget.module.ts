@@ -2,7 +2,9 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BudgetSnapshotComponent } from './budget-snapshot.component';
 import { BudgetDoughnutChartComponent } from './budget-doughnut-chart.component';
+import { BudgetSnapshotTrackerComponent } from './budget-snapshot-tracker.component';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { CommonModule } from '@angular/common';
 
 import { ZipmyntSharedModule } from 'app/shared';
 import {
@@ -19,7 +21,7 @@ import { ZipmyntBudgetItemModule } from 'app/entities/budget-item/budget-item.mo
 const ENTITY_STATES = [...budgetRoute, ...budgetPopupRoute];
 
 @NgModule({
-    imports: [ZipmyntSharedModule, RouterModule.forChild(ENTITY_STATES), ZipmyntBudgetItemModule, ChartsModule],
+    imports: [ZipmyntSharedModule, RouterModule.forChild(ENTITY_STATES), ZipmyntBudgetItemModule, ChartsModule, CommonModule],
     declarations: [
         BudgetComponent,
         BudgetDetailComponent,
@@ -27,7 +29,8 @@ const ENTITY_STATES = [...budgetRoute, ...budgetPopupRoute];
         BudgetDeleteDialogComponent,
         BudgetDeletePopupComponent,
         BudgetSnapshotComponent,
-        BudgetDoughnutChartComponent
+        BudgetDoughnutChartComponent,
+        BudgetSnapshotTrackerComponent
     ],
     entryComponents: [BudgetComponent, BudgetUpdateComponent, BudgetDeleteDialogComponent, BudgetDeletePopupComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -37,7 +40,8 @@ const ENTITY_STATES = [...budgetRoute, ...budgetPopupRoute];
         BudgetDeleteDialogComponent,
         BudgetDeletePopupComponent,
         BudgetSnapshotComponent,
-        BudgetDoughnutChartComponent
+        BudgetDoughnutChartComponent,
+        BudgetSnapshotTrackerComponent
     ]
 })
 export class ZipmyntBudgetModule {}
