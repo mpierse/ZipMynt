@@ -1,15 +1,39 @@
 <div>
     <h2 id="page-heading">
         <span>Bill Items</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-bill-item" [routerLink]="['/bill-item/new']">
+        <!-- <label><span style="float:right"> search by month </span></label> -->
+        <!-- <select class ="drop-down-list  float-right">
+            <option value="January">Comcast</option>
+            <option value="February">Peco</option>
+            <option value="March">Hydro
+            </option>
+          </select> -->
+          <select class ="drop-down-list  float-right">
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+           
+                <option value="May">May</option>
+                <option value="June">June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+               
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="December">December</option>
+              
+          </select>
+        <!-- <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-bill-item" [routerLink]="['/bill-item/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span >
             Create new Bill Item
             </span>
-        </button>
+        </button> -->
     </h2>
     <jhi-alert></jhi-alert>
-    <br/>
+    <br/>    
     <div class="table-responsive" *ngIf="billItems">
         <table class="table table-striped">
             <thead>
@@ -23,8 +47,9 @@
             <th><span>Memo</span></th>
             <th><span>Bills</span></th>
             <th></th>
-            </tr>
+            </tr> 
             </thead>
+           <!-- <input type="text" placeholder="companyname" ng-model="search.companyName" >-->
             <tbody>
             <tr *ngFor="let billItem of billItems ;trackBy: trackId">
                 <td><a [routerLink]="['/bill-item', billItem.id, 'view' ]">{{billItem.id}}</a></td>
@@ -33,7 +58,7 @@
                 <td>{{billItem.paymentDate | date:'mediumDate'}}</td>
                 <td>{{billItem.paymentAmount}}</td>
                 <td>{{billItem.autoPay}}</td>
-                <td>{{billItem.memo}}</td>
+                <td>{{billItem.memo}}</td>            
                 <td>
                     <div *ngIf="billItem.bills">
                         <a [routerLink]="['../bills', billItem.bills?.id, 'view' ]" >{{billItem.bills?.id}}</a>
@@ -47,7 +72,14 @@
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline">View</span>
                         </button>
-                        <button type="submit"
+                        <button type="submit" 
+                        [routerLink]="['/bill-item', billItem.id, 'view' ]"
+                        class ="btn btn-info btn-sm" >
+                                <fa-icon [icon]="'eye'"></fa-icon>
+                                <span class="d-none d-md-inline">Paid</span>
+
+                        </button>
+                        <!--- <button type="submit"
                                 [routerLink]="['/bill-item', billItem.id, 'edit']"
                                 class="btn btn-primary btn-sm">
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
@@ -60,7 +92,7 @@
                                 class="btn btn-danger btn-sm">
                             <fa-icon [icon]="'times'"></fa-icon>
                             <span class="d-none d-md-inline">Delete</span>
-                        </button>
+                        </button> -->
                     </div>
                 </td>
             </tr>
