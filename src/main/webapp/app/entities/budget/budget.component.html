@@ -64,28 +64,5 @@
         </table>
     </div>
     <br/>
-    <div>
-        <table class="table table-striped">
-         <thead>
-         <tr>
-             <th><span>Id</span></th>
-             <th><span>Expected Spending</span></th>
-             <th><span>Actual Spending</span></th>
-             <th><span>Description</span></th> 
-             <th><span>Category</span></th>               
-             <th><span>Budget ID</span></th>
-         </tr>
-         </thead>
-         <tbody>
-             <tr *ngFor="let budgetItem of budgetItems">
-                 <td>{{budgetItem.id}}</td>
-                 <td>{{budgetItem.expectedSpending}}</td>
-                 <td>{{budgetItem.actualSpending}}</td>
-                 <td>{{budgetItem.description}}</td>
-                 <td>{{budgetItem.category}}</td>
-                 <td>{{budgetItem.budget}}</td>
-             </tr>
-         </tbody>
-        </table>
-     </div>
+    <jhi-budget-item></jhi-budget-item>
 </div>

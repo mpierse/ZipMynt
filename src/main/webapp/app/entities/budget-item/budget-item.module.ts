@@ -24,6 +24,7 @@ const ENTITY_STATES = [...budgetItemRoute, ...budgetItemPopupRoute];
         BudgetItemDeletePopupComponent
     ],
     entryComponents: [BudgetItemComponent, BudgetItemUpdateComponent, BudgetItemDeleteDialogComponent, BudgetItemDeletePopupComponent],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    exports: [BudgetItemComponent]
 })
 export class ZipmyntBudgetItemModule {}
