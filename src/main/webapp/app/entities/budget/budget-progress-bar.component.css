@@ -1,0 +1,36 @@
+.bar {
+    background-color: #b1f6d9;
+    box-shadow: 0 -1px 1px rgba(0, 0, 0, 0.15) inset;
+    color: #000001;
+    float: left;
+    height: 100%;
+    position: relative;
+    text-align: left;
+}
+
+.progress {
+    background-color: #f1f2f4;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15) inset;
+    height: 27px;
+    margin-bottom: 2%;
+    overflow: hidden;
+}
+
+.bar > .percent {
+    font-size: 0.9rem;
+    left: 8px;
+    position: absolute;
+    top: 3px;
+}
+
+.fund {
+    background-color: rgba(0, 0, 0, 0.06);
+    border-radius: 4px;
+    margin: 0 0 4%;
+    padding: 2.5% 3.5%;
+}
+
+.fund:last-child {
+    margin-bottom: 4%;
+}

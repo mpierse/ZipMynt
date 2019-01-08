@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared';
 import { IBills } from 'app/shared/model/bills.model';
+import { IBillItem } from 'app/shared/model/bill-item.model';
+import { map } from 'rxjs/operators';
 
 type EntityResponseType = HttpResponse<IBills>;
 type EntityArrayResponseType = HttpResponse<IBills[]>;
@@ -31,6 +33,16 @@ export class BillsService {
         const options = createRequestOption(req);
         return this.http.get<IBills[]>(this.resourceUrl, { params: options, observe: 'response' });
     }
+
+    // queryByCompany(companyname: string): Observable<EntityArrayResponseType> {
+    //     const options = createRequestOption(companyname);
+    //     return this.http
+    //         .get<IBillItem[]>(this.resourceUrl, { params: options, observe: 'response' })
+    //         .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+    // }
+    // convertDateArrayFromServer(res: HttpResponse<IBills[]>): any {
+    //     throw new Error("Method not implemented.");
+    // }
 
     delete(id: number): Observable<HttpResponse<any>> {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });

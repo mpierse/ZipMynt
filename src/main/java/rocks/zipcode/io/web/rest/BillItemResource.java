@@ -103,6 +103,18 @@ public class BillItemResource {
         return ResponseUtil.wrapOrNotFound(billItem);
     }
 
+     /**
+     * GET  /bill-items : get all the budgetItems with given billId.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of billItems in body
+     */
+    @GetMapping("/bill-items/bill-{billId}")
+    @Timed
+    public List<BillItem> getAllBillItemsByBillId(@PathVariable Long billID) {
+        log.debug("REST request to get all BillItems : bill-{}", billID);
+        return billItemRepository.findAllBillItemsByBillId(billID);
+    }
+
     /**
      * DELETE  /bill-items/:id : delete the "id" billItem.
      *
