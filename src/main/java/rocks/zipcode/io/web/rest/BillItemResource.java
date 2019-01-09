@@ -102,7 +102,23 @@ public class BillItemResource {
         Optional<BillItem> billItem = billItemRepository.findById(id);
         return ResponseUtil.wrapOrNotFound(billItem);
     }
+     //Billsby company name
 
+     /**
+     * GET  /bill-items/:id : get the "id" billItem.
+     *
+     * @param id the id of the billItem to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the billItem, or with status 404 (Not Found)
+     */
+    @GetMapping("/bill-items/company/{companyName}")
+    @Timed
+    public List<BillItem> getBillItemByCompanyName(@PathVariable String companyName) {
+        System.out.println("********************************************** get by company name");
+        log.debug("REST request to get BillItem : {}", companyName);
+        //List<BillItem> billItem = billItemRepository.findAllBillItemsByCompanyName(companyName);
+        return billItemRepository.findByCompanyName(companyName);
+    }
+     
      /**
      * GET  /bill-items : get all the budgetItems with given billId.
      *
