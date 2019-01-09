@@ -1,5 +1,5 @@
-<p>Expected Spending versus Actual Spending</p>
-<span>{{budgetCategory}}</span>
+<div>{{budgetCategory}}
+    <br><br></div>
 <div class="progress">
     <div class="bar" [style.width]='(budgetActual / budgetExpected) * 100 + "%"'>                                                      
         <!-- show calculated percentage if total amount raised is <= 100% -->

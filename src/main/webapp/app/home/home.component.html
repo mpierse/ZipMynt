@@ -8,23 +8,23 @@
                     <h3>Your snapshot for {{today | date}}:</h3>
                     <hr><br>
                 </span>
+            <div class="row">
+                <div class="col-md-12" style="text-align: center">
+                    <div>
+                        <!-- Budget component -->
+                        <jhi-budget-snapshot></jhi-budget-snapshot>
+                    </div>
+                </div>
+            </div>
+            <hr>
                 <div class="row">
-
-                    <div class="col-md-3" style="text-align: center">
+                    <div class="col-md-6" style="text-align: center">
                         <div style="text-align: left">
                             <h5>Most recent transactions:</h5>
                             <jhi-transaction-card></jhi-transaction-card>
                         </div>
                     </div>
                     <div class="col-md-6" style="text-align: center">
-                        <div style="text-align: left">
-                            <h5>This month's budget outlook:</h5>
-                            <!-- Budget component -->
-                            <jhi-budget-snapshot></jhi-budget-snapshot>
-
-                        </div>
-                    </div>
-                    <div class="col-md-3" style="text-align: center">
                         <div style="text-align: left">
                             <h5>Upcoming bills:</h5>
                             <jhi-bill-snapshot></jhi-bill-snapshot>

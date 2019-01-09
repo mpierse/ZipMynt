@@ -1,131 +1,41 @@
-import { Component, Input, ContentChild, TemplateRef, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
-import 'chart.js/src/chart.js';
-import { trigger, state, style, transition, animate } from '@angular/animations';
-import { BaseChartComponent } from '@swimlane/ngx-charts';
-import { min } from 'd3-array';
-import { format } from 'd3-format';
-
-import { calculateViewDimensions, ViewDimensions } from '../../../common/view-dimensions.helper';
-import { ColorHelper } from '../../../common/color.helper';
-import { trimLabel } from '../../../common/trim-label.helper';
-import { gridLayout } from '../../../common/grid-layout.helper';
-import { formatLabel } from '../../../common/label.helper';
+import { Component } from '@angular/core';
+// import {BrowserModule} from '@angular/platform-browser';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import {NgxChartsModule} from '@swimlane/ngx-charts';
+import { single } from './data';
 
 @Component({
     selector: 'jhi-budget-doughnut-chart',
-    templateUrl: './budget-doughnut-chart.component.html',
-    styleUrls: ['./budget-pie-grid.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: './budget-doughnut-chart.component.html'
+    // styleUrls: ['./budget-pie-grid.component.scss']
 })
-export class BudgetDoughnutChartComponent extends BaseChartComponent {
-    @Input() designatedTotal: number;
-    @Input() tooltipDisabled = false;
-    @Input() tooltipText: (o: any) => any;
-    @Input() label = 'Total';
-    @Input() minWidth = 150;
+export class BudgetDoughnutChartComponent {
+    single: any[];
 
-    dims: ViewDimensions;
-    data: any[] = ['test', 'test2'];
-    transform: string;
-    series: any[] = [10000, 20000];
-    domain: any[];
-    colorScale: ColorHelper;
-    margin = [20, 20, 20, 20];
+    view: any[] = [600, 400];
 
-    @ContentChild('tooltipTemplate') tooltipTemplate: TemplateRef<any>;
+    // options
+    showXAxis = true;
+    showYAxis = true;
+    gradient = false;
+    showLegend = false;
+    showXAxisLabel = true;
+    xAxisLabel = 'Category';
+    showYAxisLabel = true;
+    yAxisLabel = 'Spending';
 
-    update(): void {
-        super.update();
+    colorScheme = {
+        domain: ['#A7D7D7', '#F5A7B5', '#FBE2AA', '#99C8EE', '#967bb6', '#C4D7E4']
+    };
 
-        this.dims = calculateViewDimensions({
-            width: this.width,
-            height: this.height,
-            margins: this.margin
-        });
+    // line, area
+    autoScale = true;
 
-        this.domain = this.getDomain();
-
-        this.data = gridLayout(this.dims, this.results, this.minWidth, this.designatedTotal);
-        this.transform = `translate(${this.margin[3]} , ${this.margin[0]})`;
-
-        this.series = this.getSeries();
-        this.setColors();
-
-        this.tooltipText = this.tooltipText || this.defaultTooltipText;
+    constructor() {
+        Object.assign(this, { single });
     }
 
-    defaultTooltipText({ data }): string {
-        const label = trimLabel(formatLabel(data.name));
-        const val = data.value.toLocaleString();
-        return `
-        <span class="tooltip-label">${label}</span>
-        <span class="tooltip-val">${val}</span>
-      `;
-    }
-
-    getDomain(): any[] {
-        return this.results.map(d => d.name);
-    }
-
-    getSeries(): any[] {
-        const total = this.designatedTotal ? this.designatedTotal : this.getTotal();
-
-        return this.data.map(d => {
-            const baselineLabelHeight = 20;
-            const padding = 10;
-            const name = d.data.name;
-            const label = formatLabel(name);
-            const value = d.data.value;
-            const radius = min([d.width - padding, d.height - baselineLabelHeight]) / 2 - 5;
-            const innerRadius = radius * 0.9;
-
-            let count = 0;
-            const colors = () => {
-                count += 1;
-                if (count === 1) {
-                    return 'rgba(100,100,100,0.3)';
-                } else {
-                    return this.colorScale.getColor(label);
-                }
-            };
-
-            const xPos = d.x + (d.width - padding) / 2;
-            const yPos = d.y + (d.height - baselineLabelHeight) / 2;
-
-            return {
-                transform: `translate(${xPos}, ${yPos})`,
-                colors,
-                innerRadius,
-                outerRadius: radius,
-                name,
-                label: trimLabel(label),
-                total: value,
-                value,
-                percent: format('.1%')(d.data.percent),
-                data: [
-                    d,
-                    {
-                        data: {
-                            other: true,
-                            value: total - value,
-                            name: d.data.name
-                        }
-                    }
-                ]
-            };
-        });
-    }
-
-    getTotal(): any {
-        return this.results.map(d => d.value).reduce((sum, d) => sum + d, 0);
-    }
-
-    onClick(data): void {
-        this.select.emit(data);
-    }
-
-    setColors(): void {
-        this.colorScale = new ColorHelper(this.scheme, 'ordinal', this.domain, this.customColors);
+    onSelect(event) {
+        console.log(event);
     }
 }
