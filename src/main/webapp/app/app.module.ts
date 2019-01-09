@@ -18,6 +18,7 @@ import { ZipmyntHomeModule } from './home/home.module';
 import { ZipmyntAccountModule } from './account/account.module';
 import { ZipmyntEntityModule } from './entities/entity.module';
 import * as moment from 'moment';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ErrorComponent } from './layouts';
 
@@ -36,7 +37,8 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
         ZipmyntHomeModule,
         ZipmyntAccountModule,
         // jhipster-needle-angular-add-module JHipster will add new module here
-        ZipmyntEntityModule
+        ZipmyntEntityModule,
+        BrowserAnimationsModule
     ],
     declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent],
     providers: [

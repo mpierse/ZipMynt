@@ -5,6 +5,7 @@ import { BudgetDoughnutChartComponent } from './budget-doughnut-chart.component'
 import { BudgetProgressBarComponent } from './budget-progress-bar.component';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { CommonModule } from '@angular/common';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { ZipmyntSharedModule } from 'app/shared';
 import {
@@ -21,7 +22,14 @@ import { ZipmyntBudgetItemModule } from 'app/entities/budget-item/budget-item.mo
 const ENTITY_STATES = [...budgetRoute, ...budgetPopupRoute];
 
 @NgModule({
-    imports: [ZipmyntSharedModule, RouterModule.forChild(ENTITY_STATES), ZipmyntBudgetItemModule, ChartsModule, CommonModule],
+    imports: [
+        ZipmyntSharedModule,
+        RouterModule.forChild(ENTITY_STATES),
+        ZipmyntBudgetItemModule,
+        ChartsModule,
+        CommonModule,
+        NgxChartsModule
+    ],
     declarations: [
         BudgetComponent,
         BudgetDetailComponent,
