@@ -1,4 +1,4 @@
 id;company_name;due_date;payment_date;payment_amount;auto_pay;memo;bills_id
-1;HydroWorks of Wilmington, De;2018-12-01;2018-12-01;75;TRUE;water bill for my showers;1
-2;PECO Electricity;2018-12-01;2018-12-01;50;TRUE;electric bill;2
+1;HydroWorks;2018-12-01;2018-12-01;75;TRUE;water bill for my showers;1
+2;PECO;2018-12-01;2018-12-01;50;TRUE;electric bill;2
 3;Comcast;2018-12-01;2018-12-01;80;TRUE;TV/Internet;3
