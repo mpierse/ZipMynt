@@ -10,7 +10,10 @@
     </h2>
     <jhi-alert></jhi-alert>
     <br/>
-    <div class="table-responsive" *ngIf="budgets">
+    <jhi-budget-progress-bar budgetExpected={{budgets[0].expectedTotal}} budgetActual={{budgets[0].actualTotal}} budgetCategory="Current spending for {{budgets[0].startDate | date: mediumDate}} to {{budgets[0].endDate | date: mediumDate}}."></jhi-budget-progress-bar>
+    </br>
+    <jhi-budget-modal-component></jhi-budget-modal-component>
+    <!-- <div class="table-responsive" *ngIf="budgets">
         <table class="table table-striped">
             <thead>
             <tr>
@@ -20,7 +23,7 @@
             <th><span>Start Date</span></th>
             <th><span>End Date</span></th>
             <!--<th><span>User Details</span></th> -->
-            <th></th>
+            <!-- <th></th>
             </tr>
             </thead>
             <tbody>
@@ -58,5 +61,5 @@
             </tbody>
             </br>
         </table>
-    </div>
+    </div> -->
 </div>
