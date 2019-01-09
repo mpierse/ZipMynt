@@ -1,6 +1,6 @@
 <div>
     <h2 id="page-heading">
-        <span>Budgets</span>
+        <span>Current Budget</span>
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-budget" [routerLink]="['/budget/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span >
@@ -13,7 +13,9 @@
     <jhi-budget-progress-bar budgetExpected={{budgets[0].expectedTotal}} budgetActual={{budgets[0].actualTotal}} budgetCategory="Current spending for {{budgets[0].startDate | date: mediumDate}} to {{budgets[0].endDate | date: mediumDate}}."></jhi-budget-progress-bar>
     </br>
     <jhi-budget-modal-component></jhi-budget-modal-component>
-    <!-- <div class="table-responsive" *ngIf="budgets">
+    </br>
+    <div class="table-responsive" *ngIf="budgets">
+        <h3>Past Budgets</h3>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -22,8 +24,7 @@
             <th><span>Actual Total</span></th>
             <th><span>Start Date</span></th>
             <th><span>End Date</span></th>
-            <!--<th><span>User Details</span></th> -->
-            <!-- <th></th>
+            <th></th>
             </tr>
             </thead>
             <tbody>
@@ -61,5 +62,5 @@
             </tbody>
             </br>
         </table>
-    </div> -->
+    </div>
 </div>

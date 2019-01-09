@@ -10,7 +10,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
             </button>
         </div>
         <div class="modal-body">
-            <p>Budget items for Dec 1 to Dec 31</p>
+            <p>Budget Breakdown for Dec 1 to Dec 31</p>
             <jhi-budget-item></jhi-budget-item>
         </div>
         <div class="modal-footer">
