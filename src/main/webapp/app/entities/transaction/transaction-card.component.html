@@ -1,6 +1,11 @@
-<p>
-  transaction-card works!
-  
-  <!-- Create cards of each transaction (only recent ones) x5 -->
-  <!-- Pagination - Server side query -->
-</p>
+<div> 
+    <div *ngFor="let transaction of transactions" class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{transaction.descriptionID}} - {{transaction.dateTime | date: 'MMM d yyyy'}}</h5>
+          <div *ngIf="transaction.transactionType === 'CREDIT'; else debitTransaction">
+            <ul><li>Amount: <span style= "color:red">-${{transaction.amount}}</span></li></ul>
+            <ng-template #debitTransaction><ul><li>Amount: ${{transaction.amount}}</li></ul></ng-template>
+          </div>
+        </div>
+      </div>
+</div>
