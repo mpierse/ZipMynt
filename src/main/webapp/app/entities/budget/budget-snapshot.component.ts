@@ -10,7 +10,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
     styleUrls: ['./budget-snapshot.component.css']
 })
 export class BudgetSnapshotComponent implements OnInit {
-    budgets: IBudget[];
+    budgets: IBudget[] = [];
     today: number = Date.now();
 
     constructor(private budgetService: BudgetService, protected jhiAlertService: JhiAlertService) {}

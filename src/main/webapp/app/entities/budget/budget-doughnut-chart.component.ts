@@ -1,13 +1,9 @@
 import { Component } from '@angular/core';
-// import {BrowserModule} from '@angular/platform-browser';
-// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import {NgxChartsModule} from '@swimlane/ngx-charts';
 import { single } from './data';
 
 @Component({
     selector: 'jhi-budget-doughnut-chart',
     templateUrl: './budget-doughnut-chart.component.html'
-    // styleUrls: ['./budget-pie-grid.component.scss']
 })
 export class BudgetDoughnutChartComponent {
     single: any[];
