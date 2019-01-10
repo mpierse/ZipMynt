@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
+
 import { Subscription } from 'rxjs';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
@@ -15,33 +17,29 @@ export class BillItemComponent implements OnInit, OnDestroy {
     billItems: IBillItem[];
     currentAccount: any;
     eventSubscriber: Subscription;
+    companyName: String;
 
     constructor(
         protected billItemService: BillItemService,
         protected jhiAlertService: JhiAlertService,
         protected eventManager: JhiEventManager,
-        protected accountService: AccountService
-    ) {}
+        protected accountService: AccountService,
+        private route: ActivatedRoute
+    ) {
+        this.companyName = this.route.snapshot.params['companyName'];
+    }
 
     loadAll() {
-        this.billItemService.query().subscribe(
+        this.billItemService.queryByCompanyName(this.companyName).subscribe(
             (res: HttpResponse<IBillItem[]>) => {
                 this.billItems = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
     }
-    loadByCompanyname() {
-        this.billItemService.queryByCompany().subscribe(
-            (res: HttpResponse<IBillItem[]>) => {
-                this.billItems = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
-    }
+
     ngOnInit() {
         this.loadAll();
-        this.loadByCompanyname();
         this.accountService.identity().then(account => {
             this.currentAccount = account;
         });
@@ -57,7 +55,7 @@ export class BillItemComponent implements OnInit, OnDestroy {
     }
 
     registerChangeInBillItems() {
-        this.eventSubscriber = this.eventManager.subscribe('billItemListModification', response => this.loadByCompanyname());
+        this.eventSubscriber = this.eventManager.subscribe('billItemListModification', response => this.loadAll());
     }
 
     protected onError(errorMessage: string) {

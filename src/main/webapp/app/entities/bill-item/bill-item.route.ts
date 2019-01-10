@@ -38,6 +38,7 @@ export const billItemRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     },
+
     {
         path: 'bill-item/:id/view',
         component: BillItemDetailComponent,
