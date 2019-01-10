@@ -1,6 +1,6 @@
 <div>
     <h2 id="page-heading">
-        <span>Budgets</span>
+        <span>Current Budget</span>
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-budget" [routerLink]="['/budget/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span >
@@ -10,7 +10,12 @@
     </h2>
     <jhi-alert></jhi-alert>
     <br/>
+    <jhi-budget-progress-bar budgetExpected={{budgets[0].expectedTotal}} budgetActual={{budgets[0].actualTotal}} budgetCategory="Current spending for {{budgets[0].startDate | date: mediumDate}} to {{budgets[0].endDate | date: mediumDate}}."></jhi-budget-progress-bar>
+    </br>
+    <jhi-budget-modal-component></jhi-budget-modal-component>
+    </br>
     <div class="table-responsive" *ngIf="budgets">
+        <h3>Past Budgets</h3>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -19,7 +24,6 @@
             <th><span>Actual Total</span></th>
             <th><span>Start Date</span></th>
             <th><span>End Date</span></th>
-            <!--<th><span>User Details</span></th> -->
             <th></th>
             </tr>
             </thead>
@@ -37,12 +41,7 @@
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
-                                [routerLink]="['/budget-item']"
-                                class="btn btn-info btn-sm">
-                            <fa-icon [icon]="'eye'"></fa-icon>
-                            <span class="d-none d-md-inline">View</span>
-                        </button>
+                        <jhi-budget-modal-component></jhi-budget-modal-component>
                         <button type="submit"
                                 [routerLink]="['/budget', budget.id, 'edit']"
                                 class="btn btn-primary btn-sm">
@@ -61,8 +60,7 @@
                 </td>
             </tr>
             </tbody>
+            </br>
         </table>
     </div>
-    <br/>
-    <jhi-budget-item></jhi-budget-item>
 </div>

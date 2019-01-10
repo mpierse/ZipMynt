@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { BudgetSnapshotComponent } from './budget-snapshot.component';
 import { BudgetDoughnutChartComponent } from './budget-doughnut-chart.component';
 import { BudgetProgressBarComponent } from './budget-progress-bar.component';
+import { BudgetModalComponent, BudgetModalContentComponent } from './budget-modal.component';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { CommonModule } from '@angular/common';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -38,9 +39,18 @@ const ENTITY_STATES = [...budgetRoute, ...budgetPopupRoute];
         BudgetDeletePopupComponent,
         BudgetSnapshotComponent,
         BudgetDoughnutChartComponent,
-        BudgetProgressBarComponent
+        BudgetProgressBarComponent,
+        BudgetModalComponent,
+        BudgetModalContentComponent
     ],
-    entryComponents: [BudgetComponent, BudgetUpdateComponent, BudgetDeleteDialogComponent, BudgetDeletePopupComponent],
+    entryComponents: [
+        BudgetComponent,
+        BudgetUpdateComponent,
+        BudgetDeleteDialogComponent,
+        BudgetDeletePopupComponent,
+        BudgetModalContentComponent,
+        BudgetModalComponent
+    ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     exports: [
         BudgetComponent,
