@@ -8,13 +8,13 @@
         </a>
     </div>
     <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
+        <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
+                <span>
+                    <img class='logo' src='../../../content/images/ZipMynt-logo.png' />
+                </span>
+        </a>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
-                    <span>
-                            <img class='logo' src='../../../content/images/ZipMynt-logo.png' />
-                    </span>
-                </a>
             </li>
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
             <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">

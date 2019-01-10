@@ -11,8 +11,11 @@ Navbar
     height: 190px;
     position: absolute;
     top: 10%;
-    right: 38%;
     z-index: 1;
+    margin: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
 }
 
 .jh-navbar {
