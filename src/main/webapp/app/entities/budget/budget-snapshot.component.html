@@ -12,7 +12,7 @@
         <em>{{(((budgets[0].actualTotal/budgets[0].expectedTotal) * 100) | number: '1.0-0')}}% of your {{today | date: 'MMMM'}} budget of ${{budgets[0].expectedTotal}}.</em><br>
         <br>You've spent the most on <em>Rent</em> this month.<br>
         <div *ngIf= "budgets[0].expectedTotal > budgets[0].actualTotal; else overBudget">
-        You have ${{budgets[0].expectedTotal - budgets[0].actualTotal }} left for this month.<br> </div>
+        You have ${{budgets[0].expectedTotal - budgets[0].actualTotal }} left for {{today | date: 'MMMM'}}.<br> </div>
         <ng-template #overBudget id="overBudget"><br><b>You're over budget by ${{-1 * (budgets[0].expectedTotal - budgets[0].actualTotal)}}! <br>Better check your spending.</b></ng-template>
     </p>
       
