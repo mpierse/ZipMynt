@@ -64,6 +64,18 @@ export const billsRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
+        path: 'bill-item/:id/view',
+        component: BillItemComponent,
+        resolve: {
+            billitem: BillItemResolve
+        },
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'BillItems'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+    {
         path: 'bills/new',
         component: BillsUpdateComponent,
         resolve: {

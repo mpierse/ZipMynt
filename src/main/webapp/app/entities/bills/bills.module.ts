@@ -1,5 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
+// import { ZipmyntBillItemModule } from '../bill-item/bill-item.module';
 
 import { ZipmyntSharedModule } from 'app/shared';
 import {

@@ -7,9 +7,19 @@ Navbar
     color: #ccc;
 }
 
+.logo {
+    height: 190px;
+    position: absolute;
+    top: 10%;
+    z-index: 1;
+    right: calc(100vw - 50% - 384px / 2);
+}
+
 .jh-navbar {
+    position: relative;
     background-color: #353d47;
     padding: 0.2em 1em;
+    height: 150px;
     .profile-image {
         margin: -10px 0px;
         height: 40px;

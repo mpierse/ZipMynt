@@ -1,3 +1,8 @@
-<p>
-  bill-snapshot works!
-</p>
+<div> 
+    <div *ngFor="let bill of billItems" class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{bill.companyName}}</h5>
+          {{bill.dueDate}}
+        </div>
+      </div>
+</div>

@@ -12,7 +12,7 @@ import { BudgetService } from './budget.service';
     templateUrl: './budget.component.html'
 })
 export class BudgetComponent implements OnInit, OnDestroy {
-    budgets: IBudget[];
+    budgets: IBudget[] = [];
     currentAccount: any;
     eventSubscriber: Subscription;
     constructor(

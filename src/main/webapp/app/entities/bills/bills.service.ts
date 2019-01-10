@@ -34,16 +34,6 @@ export class BillsService {
         return this.http.get<IBills[]>(this.resourceUrl, { params: options, observe: 'response' });
     }
 
-    // queryByCompany(companyname: string): Observable<EntityArrayResponseType> {
-    //     const options = createRequestOption(companyname);
-    //     return this.http
-    //         .get<IBillItem[]>(this.resourceUrl, { params: options, observe: 'response' })
-    //         .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
-    // }
-    // convertDateArrayFromServer(res: HttpResponse<IBills[]>): any {
-    //     throw new Error("Method not implemented.");
-    // }
-
     delete(id: number): Observable<HttpResponse<any>> {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
     }
