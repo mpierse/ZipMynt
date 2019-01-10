@@ -12,10 +12,7 @@ Navbar
     position: absolute;
     top: 10%;
     z-index: 1;
-    margin: auto;
-    left: 0;
-    right: 0;
-    text-align: center;
+    right: calc(100vw - 50% - 384px / 2);
 }
 
 .jh-navbar {
