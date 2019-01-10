@@ -1,9 +1,9 @@
-<p>Expected Spending versus Actual Spending</p>
-<span>{{budgetCategory}}</span>
+<div>{{budgetCategory}}
+    <br><br></div>
 <div class="progress">
     <div class="bar" [style.width]='(budgetActual / budgetExpected) * 100 + "%"'>                                                      
         <!-- show calculated percentage if total amount raised is <= 100% -->
-        <span class="percent" *ngIf="((budgetActual / budgetExpected) * 100) <= 100">{{((budgetActual / budgetExpected) * 100) | number:0}}%</span>
+        <span class="percent" *ngIf="((budgetActual / budgetExpected) * 100) <= 100">{{((budgetActual / budgetExpected) * 100) | number: '1.0-0'}}%</span>
         <!-- show maximum percentage if total amount raised is > 100% -->
         <span class="percent" *ngIf="((budgetActual / budgetExpected) * 100) > 100">100%</span>
     </div>

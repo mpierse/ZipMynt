@@ -24,6 +24,7 @@ const ENTITY_STATES = [...billItemRoute, ...billItemPopupRoute];
         BillItemDeletePopupComponent
     ],
     entryComponents: [BillItemComponent, BillItemUpdateComponent, BillItemDeleteDialogComponent, BillItemDeletePopupComponent],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    exports: [BillItemComponent]
 })
 export class ZipmyntBillItemModule {}

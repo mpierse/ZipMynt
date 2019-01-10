@@ -1,24 +1,37 @@
-import { Component, OnInit } from '@angular/core';
-import 'chart.js/src/chart.js';
+import { Component } from '@angular/core';
+import { single } from './data';
 
 @Component({
     selector: 'jhi-budget-doughnut-chart',
     templateUrl: './budget-doughnut-chart.component.html'
 })
-export class BudgetDoughnutChartComponent implements OnInit {
-    public doughnutChartLabels: string[] = ['Rent', 'Food', 'Income', 'Utilities', 'Shopping', 'Transfer', 'Automotive', 'Miscellaneous'];
-    public doughnutChartData: number[] = [900, 450, 1000, 200, 600, 0, 80, 200];
-    public doughnutChartType: string = 'doughnut';
+export class BudgetDoughnutChartComponent {
+    single: any[];
 
-    constructor() {}
+    view: any[] = [600, 400];
 
-    ngOnInit() {}
-    // events
-    public chartClicked(e: any): void {
-        console.log(e);
+    // options
+    showXAxis = true;
+    showYAxis = true;
+    gradient = false;
+    showLegend = false;
+    showXAxisLabel = true;
+    xAxisLabel = 'Category';
+    showYAxisLabel = true;
+    yAxisLabel = 'Spending';
+
+    colorScheme = {
+        domain: ['#A7D7D7', '#F5A7B5', '#FBE2AA', '#99C8EE', '#967bb6', '#C4D7E4']
+    };
+
+    // line, area
+    autoScale = true;
+
+    constructor() {
+        Object.assign(this, { single });
     }
 
-    public chartHovered(e: any): void {
-        console.log(e);
+    onSelect(event) {
+        console.log(event);
     }
 }
